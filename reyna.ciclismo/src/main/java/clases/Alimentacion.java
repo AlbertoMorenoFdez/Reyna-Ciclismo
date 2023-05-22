@@ -1,26 +1,89 @@
 package clases;
 
-public class Alimentacion extends Producto{
-private short calorias;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedHashSet;
 
-public Alimentacion(String marca, String modelo, String color, String descripcion, int ean, float precio,short cantidad,
-		Proveedor proveedor, short calorias) {
-	super(marca, modelo, color, descripcion, ean, precio, cantidad, proveedor);
-	this.calorias = calorias;
-}
+import excepciones.ProveedorNoExisteException;
+import utils.DAO;
 
-public short getCalorias() {
-	return calorias;
-}
+public class Alimentacion extends Producto {
+	private String calorias;
 
-public void setCalorias(short calorias) {
-	this.calorias = calorias;
-}
+//Constructor para insertar articulos de alimentacion en la tabla productos.
+	public Alimentacion(String marca, String modelo, String color, String descripcion, int ean, float precio,
+			String calorias, String nombreProveedor) throws SQLException {
+		super(marca, modelo, color, descripcion, ean, precio);
+		HashMap<String, Object> datosAlimentacion = new HashMap<String, Object>();
+		datosAlimentacion.put("marca", marca);
+		datosAlimentacion.put("modelo", modelo);
+		datosAlimentacion.put("color", color);
+		datosAlimentacion.put("descripcion", descripcion);
+		datosAlimentacion.put("ean", ean);
+		datosAlimentacion.put("precio", precio);
+		datosAlimentacion.put("calorias", calorias);
+		datosAlimentacion.put("nombre_proveedor", nombreProveedor);
 
-@Override
-public String toString() {
-	return super.toString()+"Alimentacion [calorias=" + calorias + "]";
-}
+		DAO.insertar("alimentacion", datosAlimentacion);
+		DAO.insertar("productos", datosAlimentacion);
 
+		this.marca = marca;
+		this.modelo = modelo;
+		this.color = color;
+		this.descripcion = descripcion;
+		this.EAN = ean;
+		this.precio = precio;
+
+		this.calorias = calorias;
+		try {
+			this.proveedor = new Proveedor(nombreProveedor);
+		} catch (ProveedorNoExisteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+//Funcion para leer toda la tabla de alimentación
+	public static ArrayList<Alimentacion> getTodos() throws SQLException, ProveedorNoExisteException {
+		ArrayList<Alimentacion> todoAlimentacion = new ArrayList<>();
+
+		LinkedHashSet<String> columnasSelect = new LinkedHashSet<>(Arrays.asList("marca", "modelo", "color",
+				"descripcion", "ean", "precio", "calorias", "nombre_proveedor"));
+		HashMap<String, Object> restricciones = new HashMap<>();
+
+		ArrayList<Object> resultados = DAO.consultar("alimentacion", columnasSelect, restricciones);
+
+		for (int i = 0; i < resultados.size(); i += 8) {
+			String marca = (String) resultados.get(i);
+			String modelo = (String) resultados.get(i + 1);
+			String color = (String) resultados.get(i + 2);
+			String descripcion = (String) resultados.get(i + 3);
+			int ean = (Integer) resultados.get(i + 4);
+			float precio = (float) resultados.get(i + 5);
+			String calorias = (String) resultados.get(i + 6);
+			String nombreProveedor = (String) resultados.get(i + 7);
+
+			Alimentacion alimentacion = new Alimentacion(marca, modelo, color, descripcion, ean, precio, calorias,
+					nombreProveedor);
+			todoAlimentacion.add(alimentacion);
+		}
+
+		return todoAlimentacion;
+	}
+
+	public String getCalorias() {
+		return calorias;
+	}
+
+	public void setCalorias(String calorias) {
+		this.calorias = calorias;
+	}
+
+	@Override
+	public String toString() {
+		return super.toString() + "Alimentacion [calorias=" + calorias + "]";
+	}
 
 }

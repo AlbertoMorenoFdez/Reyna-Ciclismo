@@ -1,6 +1,7 @@
 package utils;
 
 import java.io.BufferedReader;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -15,6 +16,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 
 public abstract class DAO {
@@ -22,14 +25,15 @@ public abstract class DAO {
 
 	private static Statement conectar() {
 		try {
-			BufferedReader lector=new BufferedReader(new FileReader("bdconfig.ini"));
-			String ip=lector.readLine();
-			int puerto=Integer.parseInt(lector.readLine());
-			String nombreBD=lector.readLine();
-			String user=lector.readLine();
-			String password=lector.readLine();
+			BufferedReader lector = new BufferedReader(new FileReader("bdconfig.ini"));
+			String ip = lector.readLine();
+			int puerto = Integer.parseInt(lector.readLine());
+			String nombreBD = lector.readLine();
+			String user = lector.readLine();
+			String password = lector.readLine();
 			lector.close();
-			conexion = DriverManager.getConnection("jdbc:mysql://"+ip+":"+puerto+"/"+nombreBD,user,password);
+			conexion = DriverManager.getConnection("jdbc:mysql://" + ip + ":" + puerto + "/" + nombreBD, user,
+					password);
 			return conexion.createStatement();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -70,10 +74,14 @@ public abstract class DAO {
 		it = columnas.values().iterator();
 		while (it.hasNext()) {
 			Object elemento = it.next();
-			if (elemento.getClass() != String.class && elemento.getClass() != Character.class) {
-				consulta += elemento + ",";
+			if (elemento != null) {
+				if (elemento.getClass() != String.class && elemento.getClass() != Character.class) {
+					consulta += elemento + ",";
+				} else {
+					consulta += "'" + (String) elemento + "',";
+				}
 			} else {
-				consulta += "'" + (String) elemento + "',";
+				consulta += "NULL,";
 			}
 		}
 		consulta = consulta.substring(0, consulta.length() - 1);
@@ -103,6 +111,97 @@ public abstract class DAO {
 		return ret;
 	}
 
+//	public static ArrayList<Object> consultar(String tabla, LinkedHashSet<String> columnasSelect,
+//			HashMap<String, Object> restricciones) throws SQLException {
+//		Statement smt = conectar();
+//
+//		String query = "select ";
+//		Iterator ith = columnasSelect.iterator();
+//		while (ith.hasNext()) {
+//			query += (String) ith.next() + ",";
+//		}
+//		query = query.substring(0, query.length() - 1) + " from " + tabla + (restricciones.size() > 0 ? " where " : "");
+//		// select email,nombre,password,telefono from cliente where email='asdad' and
+//		Iterator itm = restricciones.entrySet().iterator();
+//		while (itm.hasNext()) {
+//			Entry actual = (Entry) itm.next();
+//			if (actual.getValue().getClass() != String.class && actual.getValue().getClass() != Character.class) {
+//				query += (String) actual.getKey() + "=" + (String) actual.getValue() + " and ";
+//			} else {
+//				query += (String) actual.getKey() + "='" + (String) actual.getValue() + "' and ";
+//			}
+//		}
+//		if (restricciones.size() > 0) {
+//			query = query.substring(0, query.length() - 5);
+//		}
+//		System.out.println(query);
+//		ResultSet cursor = smt.executeQuery(query);
+//		ArrayList<Object> fila = new ArrayList<Object>();
+//		while (cursor.next()) {
+//			Iterator hsCols = columnasSelect.iterator();
+//			while (hsCols.hasNext()) {
+//				String nombreCol = (String) hsCols.next();
+//				Object Valores = cursor.getObject(cursor.findColumn(nombreCol));
+//				if (Valores != null) {
+//					if (Valores.getClass() == String.class) {
+//						fila.add((String) Valores);
+//					} else if (Valores.getClass() == Integer.class) {
+//						fila.add((Integer) Valores);
+//					} else if (Valores.getClass() == Short.class) {
+//						fila.add((Short) Valores);
+//					} else if (Valores.getClass() == Float.class) {
+//						fila.add((Float) Valores);
+//					}
+//				} else {
+//					fila.add(null);
+//				}
+//			}
+//
+//		}
+//		desconectar(smt);
+//		return fila;
+//	}
+	
+//	public static ArrayList<Object> consultar(String tabla, LinkedHashSet<String> columnasSelect,
+//			HashMap<String, Object> restricciones) throws SQLException {
+//		Statement smt = conectar();
+//
+//		String query = "SELECT ";
+//		query += String.join(",", columnasSelect);
+//		query += " FROM " + tabla;
+//
+//		if (!restricciones.isEmpty()) {
+//			query += " WHERE ";
+//			List<String> restriccionesList = new ArrayList<>();
+//			for (Map.Entry<String, Object> entry : restricciones.entrySet()) {
+//				String key = entry.getKey();
+//				Object value = entry.getValue();
+//				String restriccion;
+//				if (value instanceof String || value instanceof Character) {
+//					restriccion = key + "='" + value + "'";
+//				} else {
+//					restriccion = key + "=" + value;
+//				}
+//				restriccionesList.add(restriccion);
+//			}
+//			query += String.join(" AND ", restriccionesList);
+//		}
+//
+//		System.out.println(query);
+//		ResultSet cursor = smt.executeQuery(query);
+//		ArrayList<Object> fila = new ArrayList<Object>();
+//		while (cursor.next()) {
+//			for (String nombreCol : columnasSelect) {
+//				Object valor = cursor.getObject(nombreCol);
+//				fila.add(valor);
+//			}
+//		}
+//
+//		desconectar(smt);
+//		return fila;
+//	}
+	
+	/*DEL DAO de MIGUEL*/
 	public static ArrayList<Object> consultar(String tabla, LinkedHashSet<String> columnasSelect,
 			HashMap<String, Object> restricciones) throws SQLException {
 		Statement smt = conectar();
@@ -126,25 +225,32 @@ public abstract class DAO {
 		if (restricciones.size() > 0) {
 			query = query.substring(0, query.length() - 5);
 		}
-		System.out.println(query);
+		if(Config.verboseMode) {
+			System.out.println(query);
+		}
 		ResultSet cursor = smt.executeQuery(query);
 		ArrayList<Object> fila = new ArrayList<Object>();
 		while (cursor.next()) {
-			Iterator hsCols = columnasSelect.iterator();
-			while (hsCols.hasNext()) {
-				String nombreCol = (String) hsCols.next();
-				Object Valores = cursor.getObject(cursor.findColumn(nombreCol));
-				if (Valores.getClass() == String.class) {
-					fila.add((String) Valores);
-				} else {
-					fila.add((Integer) Valores);
+			Iterator hscl = columnasSelect.iterator();
+			while (hscl.hasNext()) {
+				String nombreCl = (String) hscl.next();
+				Object valorColumna = cursor.getObject(cursor.findColumn(nombreCl));
+				Object valor = null;
+				if (valorColumna.getClass() == String.class) {
+					valor = (String) valorColumna;
+				} else if (valorColumna.getClass() == Integer.class) {
+					valor = (Integer) valorColumna;
+				} else if (valorColumna.getClass()==Float.class) {
+					valor = (Float)valorColumna;
 				}
+				fila.add(valor);
 			}
 
 		}
 		desconectar(smt);
 		return fila;
 	}
+	
 
 	public static int actualizar(String tabla, HashMap<String, Object> datosAModificar,
 			HashMap<String, Object> restricciones) throws SQLException {

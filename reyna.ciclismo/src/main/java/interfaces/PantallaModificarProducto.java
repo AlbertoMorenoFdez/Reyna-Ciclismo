@@ -46,13 +46,6 @@ public class PantallaModificarProducto extends JPanel {
 		etiquetaAltaProducto.setBounds(100, 51, 600, 58);
 		add(etiquetaAltaProducto);
 
-		JLabel etiquetaTextoModificar = new JLabel("¿Que producto quieres modificar?");
-		etiquetaTextoModificar.setHorizontalAlignment(SwingConstants.CENTER);
-		etiquetaTextoModificar.setFont(new Font("Eras Medium ITC", Font.PLAIN, 15));
-		etiquetaTextoModificar.setForeground(new Color(245, 196, 75));
-		etiquetaTextoModificar.setBounds(250, 149, 300, 14);
-		add(etiquetaTextoModificar);
-
 		JLabel etiquetaMarca = new JLabel("Marca:");
 		etiquetaMarca.setForeground(new Color(245, 196, 75));
 		etiquetaMarca.setFont(new Font("Eras Medium ITC", Font.PLAIN, 15));
@@ -216,5 +209,12 @@ public class PantallaModificarProducto extends JPanel {
 		botonAtras.setBackground(new Color(245, 196, 74));
 		botonAtras.setBounds(41, 606, 145, 32);
 		add(botonAtras);
+		
+		JLabel lblquProveedorQuieres = new JLabel("¿Qué datos quieres modificar?");
+		lblquProveedorQuieres.setHorizontalAlignment(SwingConstants.CENTER);
+		lblquProveedorQuieres.setForeground(new Color(245, 196, 75));
+		lblquProveedorQuieres.setFont(new Font("Eras Medium ITC", Font.PLAIN, 15));
+		lblquProveedorQuieres.setBounds(250, 148, 300, 14);
+		add(lblquProveedorQuieres);
 	}
 }

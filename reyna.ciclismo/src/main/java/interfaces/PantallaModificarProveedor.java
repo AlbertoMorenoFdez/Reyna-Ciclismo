@@ -48,7 +48,7 @@ public class PantallaModificarProveedor extends JPanel {
 		etiquetaDireccion.setBounds(101, 241, 120, 44);
 		add(etiquetaDireccion);
 		
-		JLabel etiquetaTelefono = new JLabel("Telefono");
+		JLabel etiquetaTelefono = new JLabel("Teléfono");
 		etiquetaTelefono.setForeground(new Color(245, 196, 74));
 		etiquetaTelefono.setFont(new Font("Eras Medium ITC", Font.BOLD, 25));
 		etiquetaTelefono.setBackground(new Color(245, 196, 74));
@@ -119,7 +119,7 @@ public class PantallaModificarProveedor extends JPanel {
 		botonAtras.setBounds(100, 571, 145, 32);
 		add(botonAtras);
 		
-		JLabel lblquProveedorQuieres = new JLabel("¿Qué proveedor quieres modificar?");
+		JLabel lblquProveedorQuieres = new JLabel("¿Qué datos quieres modificar?");
 		lblquProveedorQuieres.setHorizontalAlignment(SwingConstants.CENTER);
 		lblquProveedorQuieres.setForeground(new Color(245, 196, 75));
 		lblquProveedorQuieres.setFont(new Font("Eras Medium ITC", Font.PLAIN, 15));
