@@ -296,7 +296,7 @@ public class PantallaAltaProducto extends JPanel {
 
 		comboBoxTipoBicicleta = new JComboBox();
 		comboBoxTipoBicicleta
-				.setModel(new DefaultComboBoxModel(new String[] { "MTB", "CARRETERA", "EBIKE", "URBAN", "INFANTIL" }));
+				.setModel(new DefaultComboBoxModel(new String[] {"MTB", "CARRETERA", "EBIKE", "URBAN"}));
 		comboBoxTipoBicicleta.setFont(new Font("Arial Black", Font.PLAIN, 15));
 		GridBagConstraints gbc_comboBoxTipoBicicleta = new GridBagConstraints();
 		gbc_comboBoxTipoBicicleta.fill = GridBagConstraints.BOTH;
@@ -421,10 +421,10 @@ public class PantallaAltaProducto extends JPanel {
 					String modalidad = (String) comboBoxTipoBicicleta.getSelectedItem();
 					String tallaBicicleta = (String) comboBoxTallaBicicleta.getSelectedItem();
 					String calorias = campoCalorias.getText();
-					byte talla = 0; // Valor por defecto si no se especifica la talla
+					String talla = "u"; // Valor por defecto si no se especifica la talla
 					String campoTallaVacio = campoTalla.getText();
 					if (!campoTallaVacio.isEmpty()) {
-						talla = Byte.parseByte(campoTallaVacio);
+						talla = campoTallaVacio;
 					}
 
 					String proveedor = campoProveedor.getText();

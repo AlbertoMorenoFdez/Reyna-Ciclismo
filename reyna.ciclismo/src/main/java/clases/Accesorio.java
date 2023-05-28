@@ -10,9 +10,17 @@ import excepciones.ProveedorNoExisteException;
 import utils.DAO;
 
 public class Accesorio extends Producto {
-	private byte talla;
-
-	public Accesorio(String marca, String modelo, String color, String descripcion, int ean, float precio, byte talla,
+	private String talla;
+//Constructor para leer todos los prodcutos de la tabla accesorio.
+	public Accesorio(String marca, String modelo, String color, String descripcion, float precio, Proveedor proveedor,
+			String talla) throws SQLException {
+		super(marca, modelo, color, descripcion, precio, proveedor);
+		this.talla = talla;
+		this.getEan();
+	}	
+	
+// Constructor para insertar accesorios en las tablas de la BBDD.
+	public Accesorio(String marca, String modelo, String color, String descripcion, int ean, float precio, String talla,
 			String nombreProveedor) throws SQLException, ProveedorNoExisteException {
 		super(marca, modelo, color, descripcion, ean, precio);
 		HashMap<String, Object> datosAccesorio = new HashMap<String, Object>();
@@ -39,6 +47,8 @@ public class Accesorio extends Producto {
 
 	}
 	
+
+
 	// Funcion para leer toda la tabla de accesorio
 		public static ArrayList<Accesorio> getTodos() throws SQLException, ProveedorNoExisteException {
 		    ArrayList<Accesorio> accesorios = new ArrayList<>();
@@ -56,21 +66,24 @@ public class Accesorio extends Producto {
 		        String descripcion = (String) resultados.get(i + 3);
 		        int ean = (Integer) resultados.get(i + 4);
 		        float precio=(float) resultados.get(i+5);
-		        byte talla=(byte) resultados.get(i+6);
+		        String talla=(String) resultados.get(i+6);
 		        String nombreProveedor=(String) resultados.get(i+7);
+		        Proveedor proveedor=new Proveedor(nombreProveedor);
 		        
-		        Accesorio accesorio = new Accesorio(marca, modelo, color, descripcion, ean, precio, talla, nombreProveedor);
+		        Accesorio accesorio = new Accesorio(marca, modelo, color, descripcion, precio, proveedor, talla);
+		        accesorio.setEan(ean);
+		        accesorio.setProveedor(proveedor);
 		        accesorios.add(accesorio);
 		    }
 
 		    return accesorios;
 		}
 
-	public byte getTalla() {
+	public String getTalla() {
 		return talla;
 	}
 
-	public void setTalla(byte talla) {
+	public void setTalla(String talla) {
 		this.talla = talla;
 	}
 

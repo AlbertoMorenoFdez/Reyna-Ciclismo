@@ -19,6 +19,7 @@ import excepciones.ProductoNoExisteException;
 import excepciones.ProveedorNoExisteException;
 import excepciones.UsuarioNoExisteException;
 import interfaces.Ventana;
+import utils.DAO;
 
 public class ReynaCiclismo {
 
@@ -58,5 +59,29 @@ public class ReynaCiclismo {
 //	        cifValido=false;
 //	    }
 //	   }while(!cifValido);
+		
+		/*Modificar producto*/
+//		HashMap<String, Object> datosAModificar = new HashMap<>();
+//        datosAModificar.put("marca", "226er");
+//        datosAModificar.put("modelo", "Energy shot");
+//        datosAModificar.put("color", "");
+//        datosAModificar.put("ean", 1111);
+//        datosAModificar.put("descripcion", "Shot de cafeina");
+//        datosAModificar.put("precio", 2);
+//        datosAModificar.put("calorias", "1400cal");
+//        datosAModificar.put("nombre_proveedor", "p");
+//
+//        HashMap<String, Object> restricciones = new HashMap<>();
+//        // Agrega las restricciones necesarias para identificar el registro a modificar
+//        restricciones.put("ean", 1111);
+//        
+//        try {
+//			DAO.actualizar("alimentacion", datosAModificar, restricciones);
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+		
 	}
 }

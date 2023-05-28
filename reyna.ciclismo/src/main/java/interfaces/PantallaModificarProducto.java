@@ -46,7 +46,7 @@ public class PantallaModificarProducto extends JPanel {
 		etiquetaAltaProducto.setBounds(100, 51, 600, 58);
 		add(etiquetaAltaProducto);
 
-		JLabel etiquetaMarca = new JLabel("Marca:");
+		JLabel etiquetaMarca = new JLabel("Marca");
 		etiquetaMarca.setForeground(new Color(245, 196, 75));
 		etiquetaMarca.setFont(new Font("Eras Medium ITC", Font.PLAIN, 15));
 		etiquetaMarca.setBounds(41, 200, 179, 14);
@@ -98,7 +98,7 @@ public class PantallaModificarProducto extends JPanel {
 
 		comboBoxTipoBicicleta = new JComboBox();
 		comboBoxTipoBicicleta
-				.setModel(new DefaultComboBoxModel(new String[] { "MTB", "ROAD", "EBIKE", "URBAN", "INFANTIL" }));
+				.setModel(new DefaultComboBoxModel(new String[] { "MTB", "ROAD", "EBIKE", "URBAN"}));
 		comboBoxTipoBicicleta.setFont(new Font("Arial Black", Font.PLAIN, 15));
 		comboBoxTipoBicicleta.setBounds(242, 438, 170, 23);
 		add(comboBoxTipoBicicleta);

@@ -19,6 +19,15 @@ public class Producto {
 	protected float precio;
 
 	protected Proveedor proveedor;
+	
+	public Producto(String marca, String modelo, String color, String descripcion, float precio, Proveedor proveedor)
+			throws SQLException {
+		this.marca = marca;
+		this.modelo = modelo;
+		this.color = color;
+		this.descripcion = descripcion;
+		this.precio = precio;
+	}
 
 // Constructor para insertar productos
 	public Producto(String marca, String modelo, String color, String descripcion, int ean, float precio)
@@ -32,6 +41,8 @@ public class Producto {
 		this.precio = precio;
 		this.proveedor = null;
 	}
+	
+	
 
 // Consultar Producto
 	public Producto(String modelo) throws ProductoNoExisteException, SQLException {

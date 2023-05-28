@@ -11,6 +11,14 @@ import utils.DAO;
 
 public class Alimentacion extends Producto {
 	private String calorias;
+	
+// Constructor para leer toda la tabla de alimentacion.
+	public Alimentacion(String marca, String modelo, String color, String descripcion, float precio, Proveedor proveedor,
+			String calorias) throws SQLException {
+		super(marca, modelo, color, descripcion, precio, proveedor);
+		this.calorias = calorias;
+		this.getEan();
+	}
 
 //Constructor para insertar articulos de alimentacion en la tabla productos.
 	public Alimentacion(String marca, String modelo, String color, String descripcion, int ean, float precio,
@@ -45,6 +53,8 @@ public class Alimentacion extends Producto {
 		}
 	}
 
+
+
 //Funcion para leer toda la tabla de alimentación
 	public static ArrayList<Alimentacion> getTodos() throws SQLException, ProveedorNoExisteException {
 		ArrayList<Alimentacion> todoAlimentacion = new ArrayList<>();
@@ -64,9 +74,12 @@ public class Alimentacion extends Producto {
 			float precio = (float) resultados.get(i + 5);
 			String calorias = (String) resultados.get(i + 6);
 			String nombreProveedor = (String) resultados.get(i + 7);
+			Proveedor proveedor=new Proveedor(nombreProveedor);
 
-			Alimentacion alimentacion = new Alimentacion(marca, modelo, color, descripcion, ean, precio, calorias,
-					nombreProveedor);
+			Alimentacion alimentacion = new Alimentacion(marca, modelo, color, descripcion, precio, proveedor,
+					calorias);
+			alimentacion.setEan(ean);
+			alimentacion.setProveedor(proveedor);
 			todoAlimentacion.add(alimentacion);
 		}
 

@@ -13,6 +13,20 @@ import utils.DAO;
 public class Bicicleta extends Producto {
 	private ModalidadBicicleta modalidad;
 	private String tallaBicicleta;
+	
+
+
+	
+
+
+	
+	public Bicicleta(String marca, String modelo, String color, String descripcion, float precio, Proveedor proveedor,
+			ModalidadBicicleta modalidad, String tallaBicicleta) throws SQLException {
+		super(marca, modelo, color, descripcion, precio, proveedor);
+		this.modalidad = modalidad;
+		this.tallaBicicleta = tallaBicicleta;
+		this.getEan();
+	}
 
 	public Bicicleta(String marca, String modelo, String color, String descripcion, int ean, float precio,
 			ModalidadBicicleta modalidad, String tallaBicicleta, String nombreProveedor)
@@ -62,16 +76,32 @@ public class Bicicleta extends Producto {
 			String descripcion = (String) resultados.get(i + 3);
 			int ean = (Integer) resultados.get(i + 4);
 			float precio = (float) resultados.get(i + 5);
-			ModalidadBicicleta modalidad = (ModalidadBicicleta) resultados.get(i + 6);
+			String valorModalidad = (String) resultados.get(i + 6);
+			ModalidadBicicleta modalidad = null;
+			switch (valorModalidad) {
+			case "MTB":
+				modalidad = ModalidadBicicleta.MTB;
+				break;
+			case "CARRETERA":
+				modalidad = ModalidadBicicleta.CARRETERA;
+			case "EBIKE":
+				modalidad = ModalidadBicicleta.MTB;
+			case "URBAN":
+				modalidad = ModalidadBicicleta.MTB;
+
+			}
 			String tallaBicicleta = (String) resultados.get(i + 7);
 			String nombreProveedor = (String) resultados.get(i + 8);
+			Proveedor proveedor=new Proveedor(nombreProveedor);
+			
 
-			if (marca != null && modelo != null && color != null && descripcion != null && modalidad != null
-					&& tallaBicicleta != null && nombreProveedor != null) {
-				Bicicleta bicicleta = new Bicicleta(marca, modelo, color, descripcion, ean, precio, modalidad,
-						tallaBicicleta, nombreProveedor);
-				bicicletas.add(bicicleta);
-			}
+			Bicicleta bicicleta = new Bicicleta(marca, modelo, color, descripcion, precio, proveedor,modalidad,
+					tallaBicicleta);
+			System.out.println(bicicleta);
+			bicicleta.setEan(ean);
+			bicicleta.setProveedor(proveedor);
+			bicicletas.add(bicicleta);
+
 		}
 
 		return bicicletas;
@@ -98,4 +128,7 @@ public class Bicicleta extends Producto {
 		return super.toString() + "Bicicicleta [modalidad=" + modalidad + ", tallaBicicleta=" + tallaBicicleta + "]";
 	}
 
+	private ModalidadBicicleta toEnum(String valor) {
+		return ModalidadBicicleta.MTB;
+	}
 }

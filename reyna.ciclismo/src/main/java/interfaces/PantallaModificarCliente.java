@@ -119,7 +119,7 @@ public class PantallaModificarCliente extends JPanel {
 		botonModificar.setBounds(552, 571, 145, 32);
 		add(botonModificar);
 		
-		JButton botonAtras = new JButton("<-- Atrás");
+		JButton botonAtras = new JButton("Cancelar");
 		botonAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ventana.cambiarAPantalla(PantallaAdministracion.class);

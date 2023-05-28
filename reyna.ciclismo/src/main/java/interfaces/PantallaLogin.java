@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JInternalFrame;
+import javax.imageio.ImageIO;
 import javax.swing.Box;
 import javax.swing.border.LineBorder;
 
@@ -18,12 +19,16 @@ import excepciones.UsuarioNoExisteException;
 
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Cursor;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 
 import javax.swing.SwingConstants;
@@ -35,6 +40,20 @@ public class PantallaLogin extends JPanel {
 	private JTextField campoUsuario;
 	private JPasswordField campoContraseña;
 	private Ventana ventana;
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		// TODO Auto-generated method stub
+		super.paintComponent(g);
+		try {
+			BufferedImage fondo=ImageIO.read(new File("./imagenes/logo rojo.png"));
+			g.drawImage(fondo, 0, 0, this);
+			g.drawImage(fondo, 0, 0, this.getWidth(), this.getHeight(), new Color(0,0,0), null);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	public PantallaLogin(Ventana v) {
 		this.ventana=v;
@@ -86,6 +105,7 @@ public class PantallaLogin extends JPanel {
 		add(etiquetaUsuario, gbc_etiquetaUsuario);
 		
 		campoUsuario = new JTextField();
+		campoUsuario.setText("admin@admin");
 		campoUsuario.setFont(new Font("Arial Black", Font.PLAIN, 25));
 		GridBagConstraints gbc_campoUsuario = new GridBagConstraints();
 		gbc_campoUsuario.fill = GridBagConstraints.HORIZONTAL;

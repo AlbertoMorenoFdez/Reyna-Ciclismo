@@ -21,13 +21,13 @@ public class Proveedor {
 	public Proveedor(String nombre, String direccion, String emailProveedor, Integer telefonoProveedor) {
 		this.nombre = nombre;
 		this.direccion = direccion;
-		
 		this.emailProveedor = emailProveedor;
 		this.telefonoProveedor = telefonoProveedor;
 	}
-	
+
 	// Constructor para introducir en la base de datos
-	public Proveedor(String nombre, String direccion, String cif, String emailProveedor, Integer telefonoProveedor) throws SQLException{
+	public Proveedor(String nombre, String direccion, String cif, String emailProveedor, Integer telefonoProveedor)
+			throws SQLException {
 		HashMap<String, Object> datosProveedor = new HashMap<String, Object>();
 		datosProveedor.put("correo_electronico", emailProveedor);
 		datosProveedor.put("nombre", nombre);
@@ -35,9 +35,7 @@ public class Proveedor {
 		datosProveedor.put("CIF", cif);
 		datosProveedor.put("direccion", direccion);
 
-		
-			DAO.insertar("proveedores", datosProveedor) ;
-		
+		DAO.insertar("proveedores", datosProveedor);
 
 		this.nombre = nombre;
 		this.direccion = direccion;
@@ -52,13 +50,11 @@ public class Proveedor {
 		HashMap<String, Object> restricciones = new HashMap<String, Object>();
 		restricciones.put("CIF", cif);
 
-		
-			datosProveedor = DAO.consultar("proveedores",
-					new LinkedHashSet<>(
-							Arrays.asList("nombre", "direccion", "CIF", "numero_telefono", "correo_electronico")),
-					restricciones);
+		datosProveedor = DAO.consultar("proveedores",
+				new LinkedHashSet<>(
+						Arrays.asList("nombre", "direccion", "CIF", "numero_telefono", "correo_electronico")),
+				restricciones);
 
-		
 		if (datosProveedor.isEmpty()) {
 			throw new ProveedorNoExisteException(cif);
 		}
@@ -68,30 +64,30 @@ public class Proveedor {
 		this.telefonoProveedor = (Integer) datosProveedor.get(3);
 		this.emailProveedor = (String) datosProveedor.get(4);
 	}
-	
+
 	// Funcion para leer toda la tabla de proveedores
 	public static ArrayList<Proveedor> getTodos() throws SQLException {
-	    ArrayList<Proveedor> proveedores = new ArrayList<>();
+		ArrayList<Proveedor> proveedores = new ArrayList<>();
 
-	    LinkedHashSet<String> columnasSelect = new LinkedHashSet<>(
-	            Arrays.asList("nombre", "direccion", "correo_electronico", "CIF", "numero_telefono"));
-	    HashMap<String, Object> restricciones = new HashMap<>();
+		LinkedHashSet<String> columnasSelect = new LinkedHashSet<>(
+				Arrays.asList("nombre", "direccion", "correo_electronico", "CIF", "numero_telefono"));
+		HashMap<String, Object> restricciones = new HashMap<>();
 
-	    ArrayList<Object> resultados = DAO.consultar("proveedores", columnasSelect, restricciones);
+		ArrayList<Object> resultados = DAO.consultar("proveedores", columnasSelect, restricciones);
 
-	    for (int i = 0; i < resultados.size(); i += 5) {
-	        String nombre = (String) resultados.get(i);
-	        String direccion = (String) resultados.get(i + 1);
-	        String email = (String) resultados.get(i + 2);
-	        String cif = (String) resultados.get(i + 3);
-	        int telefono = (Integer) resultados.get(i + 4);
+		for (int i = 0; i < resultados.size(); i += 5) {
+			String nombre = (String) resultados.get(i);
+			String direccion = (String) resultados.get(i + 1);
+			String email = (String) resultados.get(i + 2);
+			String cif = (String) resultados.get(i + 3);
+			int telefono = (Integer) resultados.get(i + 4);
 
-	        Proveedor proveedor = new Proveedor(nombre, direccion, cif, telefono);
-	        proveedor.setCIF(cif); // Asignar el valor del CIF recuperado de la base de datos
-	        proveedores.add(proveedor);
-	    }
+			Proveedor proveedor = new Proveedor(nombre, direccion, email, telefono);
+			proveedor.setCIF(cif); // Asignar el valor del CIF recuperado de la base de datos
+			proveedores.add(proveedor);
+		}
 
-	    return proveedores;
+		return proveedores;
 	}
 
 	public String getNombre() {
@@ -117,8 +113,9 @@ public class Proveedor {
 	public String getDireccion() {
 		return direccion;
 	}
+
 	// Cambiar la direccion del Proveedor
-	public void setDireccion(String direccion) throws SQLException{
+	public void setDireccion(String direccion) throws SQLException {
 		HashMap<String, Object> datosAModificar = new HashMap<>();
 		datosAModificar.put("direccion", direccion);
 		HashMap<String, Object> restricciones = new HashMap<>();
@@ -153,9 +150,9 @@ public class Proveedor {
 //		this.cif = cif;
 //		
 //	}
-	
+
 	public void setCIF(String cif) {
-		this.cif=cif;
+		this.cif = cif;
 	}
 
 	public String getEmailProveedor() {
@@ -163,7 +160,7 @@ public class Proveedor {
 	}
 
 	// Cambiar el email del Proveedor
-	public void setEmailProveedor(String emailProveedor) throws SQLException{
+	public void setEmailProveedor(String emailProveedor) throws SQLException {
 		HashMap<String, Object> datosAModificar = new HashMap<>();
 		datosAModificar.put("correo_electronico", emailProveedor);
 		HashMap<String, Object> restricciones = new HashMap<>();

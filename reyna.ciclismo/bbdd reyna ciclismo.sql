@@ -9,6 +9,8 @@ CREATE TABLE usuarios (
     numero_telefono INT(15)
 );
 
+
+
 CREATE TABLE productos (
     
     marca VARCHAR(100) NOT NULL,
@@ -19,7 +21,7 @@ CREATE TABLE productos (
     precio DECIMAL(10, 2),
     modalidad VARCHAR(50),
     talla_bicicleta VARCHAR(20),
-    calorias INT(10),
+    calorias VARCHAR(20),
     talla_accesorio VARCHAR(10),
     nombre_proveedor VARCHAR(100),
     FOREIGN KEY (nombre_proveedor) REFERENCES proveedores(nombre)
@@ -47,7 +49,7 @@ CREATE TABLE alimentacion (
     color VARCHAR(50),
     descripcion VARCHAR(255),
     precio DECIMAL(10, 2),
-    calorias INT(10),
+    calorias VARCHAR(20),
     nombre_proveedor VARCHAR(100),
     FOREIGN KEY (nombre_proveedor) REFERENCES proveedores(nombre)
 );

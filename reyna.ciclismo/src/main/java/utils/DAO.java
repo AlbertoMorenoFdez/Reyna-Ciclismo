@@ -5,6 +5,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.sql.Connection;
 
 import java.sql.DriverManager;
@@ -86,7 +87,7 @@ public abstract class DAO {
 		}
 		consulta = consulta.substring(0, consulta.length() - 1);
 		consulta += ")";
-		System.out.println(consulta);
+		
 		int ret = smt.executeUpdate(consulta);
 		desconectar(smt);
 		return ret;
@@ -212,7 +213,7 @@ public abstract class DAO {
 			query += (String) ith.next() + ",";
 		}
 		query = query.substring(0, query.length() - 1) + " from " + tabla + (restricciones.size() > 0 ? " where " : "");
-		// select email,nombre,password,telefono from cliente where email='asdad' and
+		
 		Iterator itm = restricciones.entrySet().iterator();
 		while (itm.hasNext()) {
 			Entry actual = (Entry) itm.next();
@@ -222,6 +223,16 @@ public abstract class DAO {
 				query += (String) actual.getKey() + "='" + (String) actual.getValue() + "' and ";
 			}
 		}
+//		Iterator<Map.Entry<String, Object>> itr = restricciones.entrySet().iterator();
+//		while (itr.hasNext()) {
+//		    Map.Entry<String, Object> actual = itr.next();
+//		    Object value = actual.getValue();
+//		    if (!(value instanceof String) && !(value instanceof Character)) {
+//		        query += actual.getKey() + "=" + value + " and ";
+//		    } else {
+//		        query += actual.getKey() + "='" + value + "' and ";
+//		    }
+//		}
 		if (restricciones.size() > 0) {
 			query = query.substring(0, query.length() - 5);
 		}
@@ -236,12 +247,14 @@ public abstract class DAO {
 				String nombreCl = (String) hscl.next();
 				Object valorColumna = cursor.getObject(cursor.findColumn(nombreCl));
 				Object valor = null;
+				//System.out.println(valorColumna.getClass());   //Sysout para ver la clase de la columna
 				if (valorColumna.getClass() == String.class) {
 					valor = (String) valorColumna;
 				} else if (valorColumna.getClass() == Integer.class) {
 					valor = (Integer) valorColumna;
-				} else if (valorColumna.getClass()==Float.class) {
-					valor = (Float)valorColumna;
+				} else if (valorColumna.getClass() == BigDecimal.class) {
+				    valor = ((BigDecimal) valorColumna).floatValue();
+				
 				}
 				fila.add(valor);
 			}
@@ -264,6 +277,22 @@ public abstract class DAO {
 				query += actual.getKey() + " = '" + actual.getValue() + "',";
 			}
 		}
+//		query = query.substring(0, query.length() - 1) + " where ";
+//		Iterator itr = restricciones.entrySet().iterator();
+//		if (itr.hasNext()) {
+//		    while (itr.hasNext()) {
+//		        Entry actual = (Entry) itr.next();
+//		        if (actual.getValue().getClass() != String.class && actual.getValue().getClass() != Character.class) {
+//		            query += actual.getKey() + " = " + actual.getValue() + " and ";
+//		        } else {
+//		            query += actual.getKey() + " = '" + actual.getValue() + "' and ";
+//		        }
+//		    }
+//		    query = query.substring(0, query.length() - 5);
+//		} else {
+//		    query = query.substring(0, query.length() - 6);
+//		}
+		
 		query = query.substring(0, query.length() - 1) + " where ";
 		Iterator itr = restricciones.entrySet().iterator();
 		while (itr.hasNext()) {
@@ -277,11 +306,15 @@ public abstract class DAO {
 		query = query.substring(0, query.length() - 5);
 
 		Statement smt = conectar();
-		System.out.println(query);
+		if(Config.verboseMode) {
+			System.out.println(query);
+		}
 		int ret = smt.executeUpdate(query);
 		desconectar(smt);
 
 		return ret;
 	}
+	
+	
 
 }
