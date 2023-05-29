@@ -38,7 +38,8 @@ public class Ventana extends JFrame {
 // 		this.setContentPane(new PantallaMenuProductos(this));
 // 		this.setContentPane(new PantallaMenuBicicletas(this));
 //		this.setContentPane(new PantallaListadoBicicletas(this));
-
+//		this.setContentPane(new PantallaListadoAccesorios(this));
+//		this.setContentPane(new PantallaListadoAlimentacion(this));		
 		this.setVisible(true); // Siempre tiene que ser la ultima fila
 	}
 
@@ -94,6 +95,12 @@ public class Ventana extends JFrame {
 		}
 		if (clase.equals(PantallaListadoBicicletas.class)) {
 			this.setContentPane(new PantallaListadoBicicletas(this));
+		}
+		if (clase.equals(PantallaListadoAccesorios.class)) {
+			this.setContentPane(new PantallaListadoAccesorios(this));
+		}
+		if (clase.equals(PantallaListadoAlimentacion.class)) {
+			this.setContentPane(new PantallaListadoAlimentacion(this));
 		}
 
 		this.getContentPane().setVisible(true);

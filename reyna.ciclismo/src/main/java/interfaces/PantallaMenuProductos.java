@@ -100,6 +100,12 @@ public class PantallaMenuProductos extends JPanel {
 		add(labelIconoAccesorios, gbc_labelIconoAccesorios);
 
 		JButton botonAccesorios = new JButton("Accesorios");
+		botonAccesorios.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ventana.cambiarAPantalla(PantallaListadoAccesorios.class);
+			}
+		});
 		botonAccesorios.setForeground(new Color(78, 1, 23));
 		botonAccesorios.setFont(new Font("Eras Medium ITC", Font.PLAIN, 25));
 		botonAccesorios.setBackground(new Color(245, 196, 74));
@@ -118,6 +124,12 @@ public class PantallaMenuProductos extends JPanel {
 		add(labelIconoAlimentacion, gbc_labelIconoAlimentacion);
 
 		JButton botonAlimentacion = new JButton("Alimentación");
+		botonAlimentacion.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ventana.cambiarAPantalla(PantallaListadoAlimentacion.class);
+			}
+		});
 		botonAlimentacion.setForeground(new Color(78, 1, 23));
 		botonAlimentacion.setFont(new Font("Eras Medium ITC", Font.PLAIN, 25));
 		botonAlimentacion.setBackground(new Color(245, 196, 74));
