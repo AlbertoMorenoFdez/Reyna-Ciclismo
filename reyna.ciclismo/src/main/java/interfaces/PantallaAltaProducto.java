@@ -451,17 +451,19 @@ public class PantallaAltaProducto extends JPanel {
 					campoCalorias.setText("");
 					campoTalla.setText("");
 					campoProveedor.setText("");
-				} catch (SQLIntegrityConstraintViolationException e1) {
+				} 
+				catch (SQLIntegrityConstraintViolationException e1) {
 					JOptionPane.showMessageDialog(ventana, "El producto ya está dado de alta", "¡Ups, algo salió mal!",
 							JOptionPane.ERROR_MESSAGE);
 
-				} catch (SQLException e2) {
+				} 
+				catch (SQLException e2) {
 					JOptionPane.showMessageDialog(ventana, e2.getMessage(), "No se puede conectar a la base de datos",
 							JOptionPane.ERROR_MESSAGE);
 					e2.printStackTrace();
 
 				} catch (NumberFormatException e3) {
-					JOptionPane.showMessageDialog(ventana, "Tienes que poner un número que sea número", "Error",
+					JOptionPane.showMessageDialog(ventana, "Olvidaste poner el CIF o la talla si procede", "Error",
 							JOptionPane.ERROR_MESSAGE);
 				} catch (ProveedorNoExisteException e4) {
 					JOptionPane.showMessageDialog(ventana, "Tienes que indicar un proveedor existente", "Error",

@@ -1,6 +1,7 @@
 package interfaces;
 
 import javax.swing.ImageIcon;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -36,6 +37,7 @@ public class Ventana extends JFrame {
 // 		this.setContentPane(new PantallaPreviaModificarProveedor(this));
 // 		this.setContentPane(new PantallaMenuProductos(this));
 // 		this.setContentPane(new PantallaMenuBicicletas(this));
+//		this.setContentPane(new PantallaListadoBicicletas(this));
 
 		this.setVisible(true); // Siempre tiene que ser la ultima fila
 	}
@@ -89,6 +91,9 @@ public class Ventana extends JFrame {
 		}
 		if (clase.equals(PantallaMenuBicicletas.class)) {
 			this.setContentPane(new PantallaMenuBicicletas(this));
+		}
+		if (clase.equals(PantallaListadoBicicletas.class)) {
+			this.setContentPane(new PantallaListadoBicicletas(this));
 		}
 
 		this.getContentPane().setVisible(true);

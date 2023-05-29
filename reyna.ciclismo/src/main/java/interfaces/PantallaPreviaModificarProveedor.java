@@ -165,7 +165,7 @@ public class PantallaPreviaModificarProveedor extends JPanel {
 		botonAceptar.setBounds(552, 571, 145, 32);
 		add(botonAceptar);
 
-		JButton botonAtras = new JButton("<-- Atrás");
+		JButton botonAtras = new JButton("Cancelar");
 		botonAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ventana.cambiarAPantalla(PantallaAdministracion.class);
@@ -185,12 +185,20 @@ public class PantallaPreviaModificarProveedor extends JPanel {
 		lblEligeQueProveedor.setBounds(100, 150, 600, 32);
 		add(lblEligeQueProveedor);
 
-		JLabel lblYPulsaAceptar = new JLabel("y pulsa aceptar para continuar.");
+		JLabel lblYPulsaAceptar = new JLabel("y pulsa aceptar para confirmar.");
 		lblYPulsaAceptar.setHorizontalAlignment(SwingConstants.CENTER);
 		lblYPulsaAceptar.setForeground(new Color(245, 196, 74));
 		lblYPulsaAceptar.setFont(new Font("Eras Medium ITC", Font.BOLD, 25));
 		lblYPulsaAceptar.setBackground(new Color(245, 196, 74));
-		lblYPulsaAceptar.setBounds(100, 450, 600, 32);
+		lblYPulsaAceptar.setBounds(100, 502, 600, 32);
 		add(lblYPulsaAceptar);
+		
+		JLabel lblrealizaCambios = new JLabel("realiza los cambios que quieras");
+		lblrealizaCambios.setHorizontalAlignment(SwingConstants.CENTER);
+		lblrealizaCambios.setForeground(new Color(245, 196, 74));
+		lblrealizaCambios.setFont(new Font("Eras Medium ITC", Font.BOLD, 25));
+		lblrealizaCambios.setBackground(new Color(245, 196, 74));
+		lblrealizaCambios.setBounds(100, 469, 600, 32);
+		add(lblrealizaCambios);
 	}
 }

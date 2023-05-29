@@ -45,19 +45,17 @@ public class Proveedor {
 	}
 
 	// Funcion para consultar el proveedor
-	public Proveedor(String cif) throws ProveedorNoExisteException, SQLException {
+	public Proveedor(String nombre) throws  SQLException,ProveedorNoExisteException {
 		ArrayList<Object> datosProveedor = null;
 		HashMap<String, Object> restricciones = new HashMap<String, Object>();
-		restricciones.put("CIF", cif);
+		restricciones.put("nombre", nombre);
 
 		datosProveedor = DAO.consultar("proveedores",
 				new LinkedHashSet<>(
 						Arrays.asList("nombre", "direccion", "CIF", "numero_telefono", "correo_electronico")),
 				restricciones);
 
-		if (datosProveedor.isEmpty()) {
-			throw new ProveedorNoExisteException(cif);
-		}
+		
 		this.nombre = (String) datosProveedor.get(0);
 		this.direccion = (String) datosProveedor.get(1);
 		this.cif = (String) datosProveedor.get(2);

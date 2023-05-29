@@ -25,7 +25,7 @@ public class PantallaMenuProductos extends JPanel {
 		gridBagLayout.columnWidths = new int[] { 70, 0, 0, 0, 0, 70, 0 };
 		gridBagLayout.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 		gridBagLayout.columnWeights = new double[] { 0.0, 1.0, 1.0, 1.0, 1.0, 0.0, Double.MIN_VALUE };
-		gridBagLayout.rowWeights = new double[] { 1.0, 1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 1.0, 1.0,
+		gridBagLayout.rowWeights = new double[] { 1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 1.0,
 				Double.MIN_VALUE };
 		setLayout(gridBagLayout);
 
@@ -55,19 +55,31 @@ public class PantallaMenuProductos extends JPanel {
 		ImageIcon iconoBicicleta = new ImageIcon("./imagenes/icono bicicleta.png");
 		ImageIcon iconoAccesorio = new ImageIcon("./imagenes/icono casco.png");
 		ImageIcon iconoAlimentacion = new ImageIcon("./imagenes/icono alimentacion.png");
+		
+		JLabel lblEligeProducto = new JLabel("Elige qué producto quieres ver.");
+		lblEligeProducto.setHorizontalAlignment(SwingConstants.CENTER);
+		lblEligeProducto.setForeground(new Color(245, 196, 74));
+		lblEligeProducto.setFont(new Font("Eras Medium ITC", Font.BOLD, 25));
+		lblEligeProducto.setBackground(new Color(245, 196, 74));
+		GridBagConstraints gbc_lblEligeProducto = new GridBagConstraints();
+		gbc_lblEligeProducto.gridwidth = 2;
+		gbc_lblEligeProducto.insets = new Insets(0, 0, 5, 5);
+		gbc_lblEligeProducto.gridx = 2;
+		gbc_lblEligeProducto.gridy = 2;
+		add(lblEligeProducto, gbc_lblEligeProducto);
 
 		JLabel labelIconoBicicleta = new JLabel(iconoBicicleta);
 		GridBagConstraints gbc_labelIconoBicicleta = new GridBagConstraints();
 		gbc_labelIconoBicicleta.insets = new Insets(0, 0, 5, 5);
 		gbc_labelIconoBicicleta.gridx = 2;
-		gbc_labelIconoBicicleta.gridy = 3;
+		gbc_labelIconoBicicleta.gridy = 4;
 		add(labelIconoBicicleta, gbc_labelIconoBicicleta);
 
 		JButton botonBicicletas = new JButton("Bicicletas");
 		botonBicicletas.addMouseListener(new MouseAdapter() {
 
 			public void mouseClicked(MouseEvent e) {
-				ventana.cambiarAPantalla(PantallaMenuBicicletas.class);
+				ventana.cambiarAPantalla(PantallaListadoBicicletas.class);
 			}
 		});
 		botonBicicletas.setFont(new Font("Eras Medium ITC", Font.PLAIN, 25));
@@ -77,14 +89,14 @@ public class PantallaMenuProductos extends JPanel {
 		gbc_botonBicicletas.fill = GridBagConstraints.BOTH;
 		gbc_botonBicicletas.insets = new Insets(0, 0, 5, 5);
 		gbc_botonBicicletas.gridx = 3;
-		gbc_botonBicicletas.gridy = 3;
+		gbc_botonBicicletas.gridy = 4;
 		add(botonBicicletas, gbc_botonBicicletas);
 
 		JLabel labelIconoAccesorios = new JLabel(iconoAccesorio);
 		GridBagConstraints gbc_labelIconoAccesorios = new GridBagConstraints();
 		gbc_labelIconoAccesorios.insets = new Insets(0, 0, 5, 5);
 		gbc_labelIconoAccesorios.gridx = 2;
-		gbc_labelIconoAccesorios.gridy = 5;
+		gbc_labelIconoAccesorios.gridy = 6;
 		add(labelIconoAccesorios, gbc_labelIconoAccesorios);
 
 		JButton botonAccesorios = new JButton("Accesorios");
@@ -95,14 +107,14 @@ public class PantallaMenuProductos extends JPanel {
 		gbc_botonAccesorios.fill = GridBagConstraints.BOTH;
 		gbc_botonAccesorios.insets = new Insets(0, 0, 5, 5);
 		gbc_botonAccesorios.gridx = 3;
-		gbc_botonAccesorios.gridy = 5;
+		gbc_botonAccesorios.gridy = 6;
 		add(botonAccesorios, gbc_botonAccesorios);
 
 		JLabel labelIconoAlimentacion = new JLabel(iconoAlimentacion);
 		GridBagConstraints gbc_labelIconoAlimentacion = new GridBagConstraints();
 		gbc_labelIconoAlimentacion.insets = new Insets(0, 0, 5, 5);
 		gbc_labelIconoAlimentacion.gridx = 2;
-		gbc_labelIconoAlimentacion.gridy = 7;
+		gbc_labelIconoAlimentacion.gridy = 8;
 		add(labelIconoAlimentacion, gbc_labelIconoAlimentacion);
 
 		JButton botonAlimentacion = new JButton("Alimentación");
@@ -113,7 +125,7 @@ public class PantallaMenuProductos extends JPanel {
 		gbc_botonAlimentacion.fill = GridBagConstraints.BOTH;
 		gbc_botonAlimentacion.insets = new Insets(0, 0, 5, 5);
 		gbc_botonAlimentacion.gridx = 3;
-		gbc_botonAlimentacion.gridy = 7;
+		gbc_botonAlimentacion.gridy = 8;
 		add(botonAlimentacion, gbc_botonAlimentacion);
 
 	}

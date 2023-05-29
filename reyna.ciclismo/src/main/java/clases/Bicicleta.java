@@ -1,10 +1,18 @@
 package clases;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 import enumReyna.ModalidadBicicleta;
 import excepciones.ProveedorNoExisteException;
@@ -130,5 +138,18 @@ public class Bicicleta extends Producto {
 
 	private ModalidadBicicleta toEnum(String valor) {
 		return ModalidadBicicleta.MTB;
+	}
+
+	public ImageIcon getImagen() {
+		JLabel labelImagen = new JLabel("");
+		try {
+			BufferedImage imagen=ImageIO.read(new File(".\\imagenes\\ebike.png"));
+			Image enIcono=imagen.getScaledInstance(200, 100, imagen.SCALE_SMOOTH);
+			labelImagen.setIcon(new ImageIcon(enIcono));
+		} catch (IOException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+		return null;
 	}
 }

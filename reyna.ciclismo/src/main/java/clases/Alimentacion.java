@@ -22,7 +22,7 @@ public class Alimentacion extends Producto {
 
 //Constructor para insertar articulos de alimentacion en la tabla productos.
 	public Alimentacion(String marca, String modelo, String color, String descripcion, int ean, float precio,
-			String calorias, String nombreProveedor) throws SQLException {
+			String calorias, String nombreProveedor) throws SQLException, ProveedorNoExisteException {
 		super(marca, modelo, color, descripcion, ean, precio);
 		HashMap<String, Object> datosAlimentacion = new HashMap<String, Object>();
 		datosAlimentacion.put("marca", marca);
@@ -45,12 +45,9 @@ public class Alimentacion extends Producto {
 		this.precio = precio;
 
 		this.calorias = calorias;
-		try {
-			this.proveedor = new Proveedor(nombreProveedor);
-		} catch (ProveedorNoExisteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+		this.proveedor = new Proveedor(nombreProveedor);
+		
 	}
 
 

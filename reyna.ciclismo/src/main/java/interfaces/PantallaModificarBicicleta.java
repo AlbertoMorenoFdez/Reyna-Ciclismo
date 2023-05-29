@@ -186,9 +186,10 @@ public class PantallaModificarBicicleta extends JPanel {
 				HashMap<String, Object> restricciones = new HashMap<>();
 				restricciones.put("ean", eanInt);
 
-				try {
-					DAO.actualizar("bicicleta", datosAModificar, restricciones);
-					DAO.actualizar("productos", datosAModificar, restricciones);
+				
+					try {
+						DAO.actualizar("bicicleta", datosAModificar, restricciones);
+						DAO.actualizar("productos", datosAModificar, restricciones);
 					String mensaje = "La bicicleta se ha actualizado con éxito:\n" + "Marca: " + marca + "\n"
 							+ "Modelo: " + modelo + "\n" + "Color: " + color + "\n" + "EAN: " + eanInt + "\n"
 							+ "Descripción: " + descripcion + "\n" + "Precio: " + precioFloat + "\n" + "Modalidad: "
@@ -196,19 +197,12 @@ public class PantallaModificarBicicleta extends JPanel {
 							+ nombreProveedor + "\n";
 					JOptionPane.showMessageDialog(ventana, mensaje, "Bicicleta modificada correctamente",
 							JOptionPane.INFORMATION_MESSAGE);
-				} catch (SQLIntegrityConstraintViolationException e1) {
-					JOptionPane.showMessageDialog(ventana, "Este EAN ya figura en la base de datos",
-							"¡Ups, algo salió mal!", JOptionPane.ERROR_MESSAGE);
-
-				} catch (SQLException e2) {
-					JOptionPane.showMessageDialog(ventana, e2.getMessage(), "No se puede conectar a la base de datos",
-							JOptionPane.ERROR_MESSAGE);
-					e2.printStackTrace();
-
-				} catch (NumberFormatException e3) {
-					JOptionPane.showMessageDialog(ventana, "Tienes que poner un número que sea número", "Error",
-							JOptionPane.ERROR_MESSAGE);
-				}
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+				
 
 			}
 		});

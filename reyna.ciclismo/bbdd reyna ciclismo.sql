@@ -1,7 +1,8 @@
 CREATE DATABASE IF NOT EXISTS reynaciclismo;
+use reynaciclismo;
 
 CREATE TABLE usuarios (
-    email VARCHAR(100) PRIMARY KEY,
+    correo_electronico VARCHAR(100) PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
     direccion VARCHAR(255),
     contraseña VARCHAR(30) NOT NULL,
@@ -9,7 +10,13 @@ CREATE TABLE usuarios (
     numero_telefono INT(15)
 );
 
-
+CREATE TABLE proveedores (
+    cif VARCHAR(9) not null,
+    nombre VARCHAR(100) PRIMARY KEY,
+    direccion VARCHAR(255) NOT NULL,
+    numero_telefono INT(15),
+    correo_electronico VARCHAR(100) NOT NULL
+);
 
 CREATE TABLE productos (
     
@@ -67,14 +74,6 @@ CREATE TABLE accesorio (
     FOREIGN KEY (nombre_proveedor) REFERENCES proveedores(nombre)
 );
 
-CREATE TABLE proveedores (
-    cif VARCHAR(9) not null,
-    nombre VARCHAR(100) PRIMARY KEY,
-    direccion VARCHAR(255) NOT NULL,
-    numero_telefono INT(15),
-    correo_electronico VARCHAR(100) NOT NULL
-);
-
 CREATE TABLE productos_Comprados (
     usuario VARCHAR(100),
     producto INT,
@@ -84,3 +83,5 @@ CREATE TABLE productos_Comprados (
     FOREIGN KEY (usuario) REFERENCES usuarios (correo_electronico),
     FOREIGN KEY (producto) REFERENCES productos (ean)
 );
+
+

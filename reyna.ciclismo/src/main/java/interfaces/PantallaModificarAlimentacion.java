@@ -52,12 +52,17 @@ public class PantallaModificarAlimentacion extends JPanel {
 
 		ArrayList<Alimentacion> todaLaAlimentacion = null;
 
-		try {
-			todaLaAlimentacion = Alimentacion.getTodos();
-		} catch (SQLException | ProveedorNoExisteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+			try {
+				todaLaAlimentacion = Alimentacion.getTodos();
+			} catch (SQLException e4) {
+				// TODO Auto-generated catch block
+				e4.printStackTrace();
+			} catch (ProveedorNoExisteException e4) {
+				// TODO Auto-generated catch block
+				e4.printStackTrace();
+			}
+		
 
 		// Crear el modelo de tabla y agregar las columnas correspondientes a los datos
 		final DefaultTableModel model = new DefaultTableModel();

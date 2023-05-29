@@ -106,6 +106,7 @@ public class PantallaLogin extends JPanel {
 		
 		campoUsuario = new JTextField();
 		campoUsuario.setText("admin@admin");
+		//campoUsuario.setText("u");
 		campoUsuario.setFont(new Font("Arial Black", Font.PLAIN, 25));
 		GridBagConstraints gbc_campoUsuario = new GridBagConstraints();
 		gbc_campoUsuario.fill = GridBagConstraints.HORIZONTAL;
@@ -129,6 +130,8 @@ public class PantallaLogin extends JPanel {
 		add(etiquetaContraseña, gbc_etiquetaContraseña);
 		
 		campoContraseña = new JPasswordField();
+		campoContraseña.setText("admin");
+		//campoContraseña.setText("admin");
 		campoContraseña.setFont(new Font("Arial Black", Font.PLAIN, 25));
 		GridBagConstraints gbc_campoContraseña = new GridBagConstraints();
 		gbc_campoContraseña.fill = GridBagConstraints.HORIZONTAL;
