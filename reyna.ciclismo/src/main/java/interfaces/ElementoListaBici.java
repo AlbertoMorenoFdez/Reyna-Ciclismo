@@ -4,6 +4,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import clases.Bicicleta;
+import clases.Producto;
+import clases.ProductosComprados;
 import excepciones.ProveedorNoExisteException;
 
 import java.awt.GridBagLayout;
@@ -123,6 +125,29 @@ public class ElementoListaBici extends JPanel {
 			}
 		});
 		add(botonVer);
+		JButton botonAgregar = new JButton("Agregar al carrito");
+		botonAgregar.setFont(new Font("Calibri", Font.PLAIN, 15));
+		botonAgregar.setForeground(new Color(78, 1, 23));
+		botonAgregar.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        // Obtener el objeto de la bicicleta seleccionada
+		        Bicicleta bicicletaSeleccionada = bicicleta;
+
+		        // Crear un objeto de la clase ProductosComprados con la bicicleta seleccionada
+		        ArrayList<Producto> productos = new ArrayList<>();
+		        productos.add(bicicletaSeleccionada);
+		        ProductosComprados productosComprados = new ProductosComprados(productos);
+
+		        // Añadir el objeto de ProductosComprados al carrito
+		        ventana.getCarrito().añadirCarrito(productosComprados);
+
+		        // Mostrar un mensaje de éxito
+		        JOptionPane.showMessageDialog(ventana, "La bicicleta se agregó al carrito.", "Éxito",
+		                JOptionPane.INFORMATION_MESSAGE);
+		        ventana.cambiarAPantalla(PantallaCarrito.class);
+		    }
+		});
+		add(botonAgregar);
 		
 //		public void actionPerformed(ActionEvent e) {
 		// Acción al hacer clic en el botón "Ver"

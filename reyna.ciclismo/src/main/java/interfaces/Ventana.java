@@ -5,14 +5,20 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import clases.Carrito;
+import clases.Marco;
 import clases.Usuario;
 
 public class Ventana extends JFrame {
-
+	protected Carrito carrito;
 	protected Usuario usuarioLogueado;
+	
+	public Carrito getCarrito() {
+	    return carrito;
+	}
 
 	public Ventana() {
-
+		carrito = new Carrito();
 		this.setSize(800, 800); // Establece el tamaño
 		this.setTitle("Tienda Online Reyna Ciclismo");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -26,6 +32,8 @@ public class Ventana extends JFrame {
 		JLabel labelFondo = new JLabel(imagenFondo);
 		this.setContentPane(labelFondo);
 
+		//this.setContentPane(new Marco(this));
+		// ((Marco)this.getContentPane()).ponerContenido(new PantallaLogin(this));
 		this.setContentPane(new PantallaLogin(this));
 // 		this.setContentPane(new PantallaRegistro(this));
 // 		this.setContentPane(new PantallaAdministracion(this));
@@ -40,6 +48,7 @@ public class Ventana extends JFrame {
 //		this.setContentPane(new PantallaListadoBicicletas(this));
 //		this.setContentPane(new PantallaListadoAccesorios(this));
 //		this.setContentPane(new PantallaListadoAlimentacion(this));		
+//		this.setContentPane(new PantallaCarrito(this));
 		this.setVisible(true); // Siempre tiene que ser la ultima fila
 	}
 
@@ -101,6 +110,9 @@ public class Ventana extends JFrame {
 		}
 		if (clase.equals(PantallaListadoAlimentacion.class)) {
 			this.setContentPane(new PantallaListadoAlimentacion(this));
+		}
+		if(clase.equals(PantallaCarrito.class)) {
+			this.setContentPane(new PantallaCarrito(this));
 		}
 
 		this.getContentPane().setVisible(true);
