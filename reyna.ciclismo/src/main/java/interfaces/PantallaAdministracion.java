@@ -22,25 +22,11 @@ public class PantallaAdministracion extends JPanel {
 		setSize(800, 700);
 		setBackground(new Color(78, 1, 23));
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{70, 265, 75, 265, 70, 0};
-		gridBagLayout.rowHeights = new int[]{0, 58, 64, 42, 60, 40, 82, 40, 73, 40, 0, 0};
-		gridBagLayout.columnWeights = new double[]{1.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.columnWidths = new int[]{50, 265, 75, 265, 50, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0, 58, 64, 42, 60, 40, 60, 40, 60, 40, 0, 0};
+		gridBagLayout.columnWeights = new double[]{0.0, 1.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
-		
-		JButton botonModificarCliente = new JButton("Modificar cliente");
-		botonModificarCliente.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ventana.cambiarAPantalla(PantallaPreviaModificarCliente.class);
-			}
-		});
-		
-		JButton botonAltaProducto = new JButton("Dar alta producto");
-		botonAltaProducto.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ventana.cambiarAPantalla(PantallaAltaProducto.class);
-			}
-		});
 		
 		JLabel labelUsuario = new JLabel("Estas conectado como "+ventana.usuarioLogueado.getNombre());
 		labelUsuario.setHorizontalAlignment(SwingConstants.LEFT);
@@ -48,7 +34,6 @@ public class PantallaAdministracion extends JPanel {
 		labelUsuario.setBackground(new Color(245, 196, 74));
 		GridBagConstraints gbc_labelUsuario = new GridBagConstraints();
 		gbc_labelUsuario.anchor = GridBagConstraints.WEST;
-		gbc_labelUsuario.gridwidth = 2;
 		gbc_labelUsuario.insets = new Insets(0, 0, 5, 5);
 		gbc_labelUsuario.gridx = 1;
 		gbc_labelUsuario.gridy = 0;
@@ -60,7 +45,6 @@ public class PantallaAdministracion extends JPanel {
 		etiquetaAdministracion.setFont(new Font("Eras Medium ITC", Font.BOLD, 50));
 		etiquetaAdministracion.setBackground(new Color(245, 196, 74));
 		GridBagConstraints gbc_etiquetaAdministracion = new GridBagConstraints();
-		gbc_etiquetaAdministracion.anchor = GridBagConstraints.NORTH;
 		gbc_etiquetaAdministracion.insets = new Insets(0, 0, 5, 5);
 		gbc_etiquetaAdministracion.gridwidth = 3;
 		gbc_etiquetaAdministracion.gridx = 1;
@@ -78,6 +62,13 @@ public class PantallaAdministracion extends JPanel {
 		gbc_etiquetaMenuAdministracion.gridx = 1;
 		gbc_etiquetaMenuAdministracion.gridy = 3;
 		add(etiquetaMenuAdministracion, gbc_etiquetaMenuAdministracion);
+		
+		JButton botonAltaProducto = new JButton("Dar alta producto");
+		botonAltaProducto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ventana.cambiarAPantalla(PantallaAltaProducto.class);
+			}
+		});
 		botonAltaProducto.setForeground(new Color(78, 1, 23));
 		botonAltaProducto.setBackground(new Color(245, 196, 75));
 		botonAltaProducto.setFont(new Font("Eras Medium ITC", Font.PLAIN, 25));
@@ -87,20 +78,6 @@ public class PantallaAdministracion extends JPanel {
 		gbc_botonAltaProducto.gridx = 1;
 		gbc_botonAltaProducto.gridy = 5;
 		add(botonAltaProducto, gbc_botonAltaProducto);
-		
-		JButton botonModificarProveedor = new JButton("Modificar proveedor");
-		botonModificarProveedor.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ventana.cambiarAPantalla(PantallaPreviaModificarProveedor.class);
-			}
-		});
-		
-		JButton botonAltaProveedor = new JButton("Dar alta proveedor");
-		botonAltaProveedor.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ventana.cambiarAPantalla(PantallaAltaProveedor.class);
-			}
-		});
 		
 		JButton botonModificarProducto = new JButton("Modificar producto");
 		botonModificarProducto.addActionListener(new ActionListener() {
@@ -117,6 +94,13 @@ public class PantallaAdministracion extends JPanel {
 		gbc_botonModificarProducto.gridx = 3;
 		gbc_botonModificarProducto.gridy = 5;
 		add(botonModificarProducto, gbc_botonModificarProducto);
+		
+		JButton botonAltaProveedor = new JButton("Dar alta proveedor");
+		botonAltaProveedor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ventana.cambiarAPantalla(PantallaAltaProveedor.class);
+			}
+		});
 		botonAltaProveedor.setForeground(new Color(78, 1, 23));
 		botonAltaProveedor.setFont(new Font("Eras Medium ITC", Font.PLAIN, 25));
 		botonAltaProveedor.setBackground(new Color(245, 196, 75));
@@ -126,6 +110,13 @@ public class PantallaAdministracion extends JPanel {
 		gbc_botonAltaProveedor.gridx = 1;
 		gbc_botonAltaProveedor.gridy = 7;
 		add(botonAltaProveedor, gbc_botonAltaProveedor);
+		
+		JButton botonModificarProveedor = new JButton("Modificar proveedor");
+		botonModificarProveedor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ventana.cambiarAPantalla(PantallaModificarProveedor.class);
+			}
+		});
 		botonModificarProveedor.setForeground(new Color(78, 1, 23));
 		botonModificarProveedor.setFont(new Font("Eras Medium ITC", Font.PLAIN, 25));
 		botonModificarProveedor.setBackground(new Color(245, 196, 75));
@@ -135,6 +126,13 @@ public class PantallaAdministracion extends JPanel {
 		gbc_botonModificarProveedor.gridx = 3;
 		gbc_botonModificarProveedor.gridy = 7;
 		add(botonModificarProveedor, gbc_botonModificarProveedor);
+		
+		JButton botonModificarCliente = new JButton("Modificar cliente");
+		botonModificarCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ventana.cambiarAPantalla(PantallaModificarCliente.class);
+			}
+		});
 		botonModificarCliente.setForeground(new Color(78, 1, 23));
 		botonModificarCliente.setFont(new Font("Eras Medium ITC", Font.PLAIN, 25));
 		botonModificarCliente.setBackground(new Color(245, 196, 75));

@@ -205,5 +205,12 @@ public class PantallaModificarAccesorio extends JPanel {
 		lblModificaElO.setBackground(new Color(245, 196, 74));
 		lblModificaElO.setBounds(100, 163, 600, 32);
 		add(lblModificaElO);
+		
+		JLabel labelUsuario = new JLabel("Estas conectado como "+ventana.usuarioLogueado.getNombre());
+		labelUsuario.setHorizontalAlignment(SwingConstants.LEFT);
+		labelUsuario.setForeground(new Color(245, 196, 74));
+		labelUsuario.setBackground(new Color(245, 196, 74));
+		labelUsuario.setBounds(50, 24, 230, 14);
+		add(labelUsuario);
 	}
 }

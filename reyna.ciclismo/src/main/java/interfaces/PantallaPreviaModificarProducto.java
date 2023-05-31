@@ -47,12 +47,24 @@ public class PantallaPreviaModificarProducto extends JPanel {
 		setSize(800, 700);
 		setBackground(new Color(78, 1, 23));
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[] { 70, 0, 135, 148, 70, 0 };
-		gridBagLayout.rowHeights = new int[] { 50, 58, 84, 0, 50, 50, 50, 50, -100, 0, 32, 50, 0 };
+		gridBagLayout.columnWidths = new int[] { 50, 0, 135, 148, 50, 0 };
+		gridBagLayout.rowHeights = new int[] { 70, 0, 58, 84, 0, 50, 50, 10, 50, 10, 50, -100, 32, 50, 0 };
 		gridBagLayout.columnWeights = new double[] { 0.0, 1.0, 1.0, 1.0, 0.0, Double.MIN_VALUE };
-		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0,
+		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0,
 				Double.MIN_VALUE };
 		setLayout(gridBagLayout);
+		
+		JLabel labelUsuario = new JLabel("Estas conectado como "+ventana.usuarioLogueado.getNombre());
+		labelUsuario.setHorizontalAlignment(SwingConstants.LEFT);
+		labelUsuario.setForeground(new Color(245, 196, 74));
+		labelUsuario.setBackground(new Color(245, 196, 74));
+		GridBagConstraints gbc_labelUsuario = new GridBagConstraints();
+		gbc_labelUsuario.anchor = GridBagConstraints.WEST;
+		gbc_labelUsuario.gridwidth = 2;
+		gbc_labelUsuario.insets = new Insets(0, 0, 5, 5);
+		gbc_labelUsuario.gridx = 1;
+		gbc_labelUsuario.gridy = 0;
+		add(labelUsuario, gbc_labelUsuario);
 
 		JLabel etiquetaAltaProducto = new JLabel("MODIFICAR PRODUCTO");
 		etiquetaAltaProducto.setHorizontalAlignment(SwingConstants.CENTER);
@@ -64,7 +76,7 @@ public class PantallaPreviaModificarProducto extends JPanel {
 		gbc_etiquetaAltaProducto.insets = new Insets(0, 0, 5, 5);
 		gbc_etiquetaAltaProducto.gridwidth = 3;
 		gbc_etiquetaAltaProducto.gridx = 1;
-		gbc_etiquetaAltaProducto.gridy = 1;
+		gbc_etiquetaAltaProducto.gridy = 2;
 		add(etiquetaAltaProducto, gbc_etiquetaAltaProducto);
 
 		JButton botonCancelar = new JButton("Cancelar");
@@ -81,7 +93,7 @@ public class PantallaPreviaModificarProducto extends JPanel {
 		gbc_etiquetacategoria.gridwidth = 3;
 		gbc_etiquetacategoria.insets = new Insets(0, 0, 5, 5);
 		gbc_etiquetacategoria.gridx = 1;
-		gbc_etiquetacategoria.gridy = 3;
+		gbc_etiquetacategoria.gridy = 4;
 		add(etiquetacategoria, gbc_etiquetacategoria);
 
 		final JRadioButton radioBicicleta = new JRadioButton("Bicicletas");
@@ -93,7 +105,7 @@ public class PantallaPreviaModificarProducto extends JPanel {
 		gbc_radioBicicleta.fill = GridBagConstraints.BOTH;
 		gbc_radioBicicleta.insets = new Insets(0, 0, 5, 5);
 		gbc_radioBicicleta.gridx = 2;
-		gbc_radioBicicleta.gridy = 5;
+		gbc_radioBicicleta.gridy = 6;
 		add(radioBicicleta, gbc_radioBicicleta);
 
 		final JRadioButton radioAlimentacion = new JRadioButton("Alimentacion");
@@ -105,7 +117,7 @@ public class PantallaPreviaModificarProducto extends JPanel {
 		gbc_radioAlimentacion.fill = GridBagConstraints.BOTH;
 		gbc_radioAlimentacion.insets = new Insets(0, 0, 5, 5);
 		gbc_radioAlimentacion.gridx = 2;
-		gbc_radioAlimentacion.gridy = 6;
+		gbc_radioAlimentacion.gridy = 8;
 		add(radioAlimentacion, gbc_radioAlimentacion);
 
 		final JRadioButton radioAccesorio = new JRadioButton("Accesorios");
@@ -117,7 +129,7 @@ public class PantallaPreviaModificarProducto extends JPanel {
 		gbc_radioAccesorio.fill = GridBagConstraints.BOTH;
 		gbc_radioAccesorio.insets = new Insets(0, 0, 5, 5);
 		gbc_radioAccesorio.gridx = 2;
-		gbc_radioAccesorio.gridy = 7;
+		gbc_radioAccesorio.gridy = 10;
 		add(radioAccesorio, gbc_radioAccesorio);
 		botonCancelar.setForeground(new Color(78, 1, 23));
 		botonCancelar.setFont(new Font("Eras Medium ITC", Font.PLAIN, 25));
@@ -126,7 +138,7 @@ public class PantallaPreviaModificarProducto extends JPanel {
 		gbc_botonCancelar.fill = GridBagConstraints.BOTH;
 		gbc_botonCancelar.insets = new Insets(0, 0, 5, 5);
 		gbc_botonCancelar.gridx = 1;
-		gbc_botonCancelar.gridy = 10;
+		gbc_botonCancelar.gridy = 12;
 		add(botonCancelar, gbc_botonCancelar);
 
 		JButton botonAceptar = new JButton("Aceptar");
@@ -150,7 +162,7 @@ public class PantallaPreviaModificarProducto extends JPanel {
 		gbc_botonAceptar.fill = GridBagConstraints.BOTH;
 		gbc_botonAceptar.insets = new Insets(0, 0, 5, 5);
 		gbc_botonAceptar.gridx = 3;
-		gbc_botonAceptar.gridy = 10;
+		gbc_botonAceptar.gridy = 12;
 		add(botonAceptar, gbc_botonAceptar);
 
 	}

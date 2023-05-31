@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -19,6 +20,9 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 import clases.Alimentacion;
+import clases.Bicicleta;
+import clases.Producto;
+import clases.ProductosComprados;
 
 public class ElementoListaAlimentacion extends JPanel{
 	Ventana ventana;
@@ -104,6 +108,30 @@ public class ElementoListaAlimentacion extends JPanel{
 				}
 			});
 			add(botonVer);
+			
+			JButton botonAgregar = new JButton("Agregar al carrito");
+			botonAgregar.setFont(new Font("Calibri", Font.PLAIN, 15));
+			botonAgregar.setForeground(new Color(78, 1, 23));
+			botonAgregar.addActionListener(new ActionListener() {
+			    public void actionPerformed(ActionEvent e) {
+			        // Obtener el objeto de la bicicleta seleccionada
+			        Alimentacion alimentoSeleccionado = alimentacion;
+
+			        // Crear un objeto de la clase ProductosComprados con la bicicleta seleccionada
+			        ArrayList<Producto> productos = new ArrayList<>();
+			        productos.add(alimentoSeleccionado);
+			        ProductosComprados productosComprados = new ProductosComprados(productos);
+
+			        // Añadir el objeto de ProductosComprados al carrito
+			        ventana.getCarrito().añadirCarrito(productosComprados);
+
+			        // Mostrar un mensaje de éxito
+			        JOptionPane.showMessageDialog(ventana, "El producto se agregó al carrito.", "Enhorabuena",
+			                JOptionPane.INFORMATION_MESSAGE);
+			        ventana.cambiarAPantalla(PantallaCarrito.class);
+			    }
+			});
+			add(botonAgregar);
 	}
 
 }

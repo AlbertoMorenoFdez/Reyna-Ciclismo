@@ -2,8 +2,6 @@ package interfaces;
 
 import java.awt.Color;
 
-
-
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -27,8 +25,6 @@ import java.awt.Insets;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
-
-
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -45,7 +41,6 @@ import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 
-
 public class PantallaAltaProveedor extends JPanel {
 	private Ventana ventana;
 	private JTextField campoEmail;
@@ -61,11 +56,21 @@ public class PantallaAltaProveedor extends JPanel {
 		setBackground(new Color(78, 1, 23));
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 70, 0, 0, 0, 0, 70, 0 };
-		gridBagLayout.rowHeights = new int[] { 30, 58, 42, 44, 44, 44, 44, 44, 30, 0, 0, 0, 34, 32, 30, 0 };
+		gridBagLayout.rowHeights = new int[] { 51, 58, 42, 44, 44, 44, 44, 44, 30, 0, 0, 0, 34, 32, 30, 0 };
 		gridBagLayout.columnWeights = new double[] { 0.0, 1.0, 1.0, 1.0, 1.0, 0.0, Double.MIN_VALUE };
 		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0,
 				0.0, Double.MIN_VALUE };
 		setLayout(gridBagLayout);
+
+		JLabel labelUsuario = new JLabel("Estas conectado como " + ventana.usuarioLogueado.getNombre());
+		labelUsuario.setForeground(new Color(245, 196, 74));
+		GridBagConstraints gbc_labelUsuario = new GridBagConstraints();
+		gbc_labelUsuario.anchor = GridBagConstraints.WEST;
+		gbc_labelUsuario.gridwidth = 2;
+		gbc_labelUsuario.insets = new Insets(0, 0, 5, 5);
+		gbc_labelUsuario.gridx = 1;
+		gbc_labelUsuario.gridy = 0;
+		add(labelUsuario, gbc_labelUsuario);
 
 		JLabel etiquetaAltaProveedor = new JLabel("ALTA DE PROVEEDOR");
 		etiquetaAltaProveedor.setHorizontalAlignment(SwingConstants.CENTER);
@@ -188,19 +193,6 @@ public class PantallaAltaProveedor extends JPanel {
 		gbc_etiquetaEmail.gridy = 7;
 		add(etiquetaEmail, gbc_etiquetaEmail);
 
-		JButton botonLimpiar = new JButton("Limpiar Datos");
-		botonLimpiar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				campoNombre.setText("");
-				campoDireccion.setText("");
-				campoCif.setText("");
-				campoEmail.setText("");
-				campoTelefono.setText("");
-
-			}
-		});
-
 		campoEmail = new JTextField();
 		campoEmail.setFont(new Font("Arial Black", Font.PLAIN, 25));
 		campoEmail.setColumns(10);
@@ -228,7 +220,7 @@ public class PantallaAltaProveedor extends JPanel {
 					JOptionPane.showMessageDialog(ventana, "Proveedor dado de alta correctamente", "¡Lo conseguiste!",
 							JOptionPane.INFORMATION_MESSAGE);
 					ventana.cambiarAPantalla(PantallaAdministracion.class);
-					
+
 				} catch (SQLIntegrityConstraintViolationException e1) {
 					JOptionPane.showMessageDialog(ventana, "El proveedor ya está dado de alta", "¡Ups, algo salió mal!",
 							JOptionPane.ERROR_MESSAGE);
@@ -256,15 +248,18 @@ public class PantallaAltaProveedor extends JPanel {
 		gbc_botonRegistro.gridy = 9;
 		add(botonRegistro, gbc_botonRegistro);
 
-		botonLimpiar.setForeground(new Color(78, 1, 23));
-		botonLimpiar.setFont(new Font("Eras Medium ITC", Font.PLAIN, 25));
-		botonLimpiar.setBackground(new Color(245, 196, 74));
-		GridBagConstraints gbc_botonLimpiar = new GridBagConstraints();
-		gbc_botonLimpiar.fill = GridBagConstraints.HORIZONTAL;
-		gbc_botonLimpiar.insets = new Insets(0, 0, 5, 5);
-		gbc_botonLimpiar.gridx = 1;
-		gbc_botonLimpiar.gridy = 13;
-		add(botonLimpiar, gbc_botonLimpiar);
+		JButton botonLimpiar = new JButton("Limpiar Datos");
+		botonLimpiar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				campoNombre.setText("");
+				campoDireccion.setText("");
+				campoCif.setText("");
+				campoEmail.setText("");
+				campoTelefono.setText("");
+
+			}
+		});
 
 		JButton botonCancelar = new JButton("Cancelar");
 		botonCancelar.addActionListener(new ActionListener() {
@@ -278,8 +273,18 @@ public class PantallaAltaProveedor extends JPanel {
 		GridBagConstraints gbc_botonCancelar = new GridBagConstraints();
 		gbc_botonCancelar.insets = new Insets(0, 0, 5, 5);
 		gbc_botonCancelar.fill = GridBagConstraints.HORIZONTAL;
-		gbc_botonCancelar.gridx = 4;
+		gbc_botonCancelar.gridx = 1;
 		gbc_botonCancelar.gridy = 13;
 		add(botonCancelar, gbc_botonCancelar);
+
+		botonLimpiar.setForeground(new Color(78, 1, 23));
+		botonLimpiar.setFont(new Font("Eras Medium ITC", Font.PLAIN, 25));
+		botonLimpiar.setBackground(new Color(245, 196, 74));
+		GridBagConstraints gbc_botonLimpiar = new GridBagConstraints();
+		gbc_botonLimpiar.fill = GridBagConstraints.HORIZONTAL;
+		gbc_botonLimpiar.insets = new Insets(0, 0, 5, 5);
+		gbc_botonLimpiar.gridx = 4;
+		gbc_botonLimpiar.gridy = 13;
+		add(botonLimpiar, gbc_botonLimpiar);
 	}
 }

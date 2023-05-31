@@ -22,6 +22,9 @@ import javax.swing.border.EmptyBorder;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.border.LineBorder;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 
 public class PantallaListadoBicicletas extends JPanel{
 	private Ventana ventana;
@@ -30,13 +33,6 @@ public class PantallaListadoBicicletas extends JPanel{
 		setBackground(new Color(78, 1, 23));
 		this.ventana=v;
 		setLayout(new BorderLayout(0, 0));
-		
-		JLabel etiquetaBicicletas = new JLabel("BICICLETAS");
-		etiquetaBicicletas.setHorizontalAlignment(SwingConstants.CENTER);
-		etiquetaBicicletas.setForeground(new Color(245, 196, 74));
-		etiquetaBicicletas.setFont(new Font("Eras Medium ITC", Font.BOLD, 50));
-		etiquetaBicicletas.setBackground(new Color(245, 196, 74));
-		add(etiquetaBicicletas, BorderLayout.NORTH);
 		
 		JButton botonAtras = new JButton("Volver");
 		botonAtras.addMouseListener(new MouseAdapter() {
@@ -67,6 +63,38 @@ public class PantallaListadoBicicletas extends JPanel{
 		contenedorElementos.setPreferredSize(panelSize); // Establecer las dimensiones preferidas del panel
 
 		lista.setViewportView(contenedorElementos);
+		
+		JPanel panelCabecera = new JPanel();
+		panelCabecera.setBackground(new Color(78, 1, 23));
+		add(panelCabecera, BorderLayout.NORTH);
+		GridBagLayout gbl_panelCabecera = new GridBagLayout();
+		gbl_panelCabecera.columnWidths = new int[]{10, 0, 0, 50, 0};
+		gbl_panelCabecera.rowHeights = new int[]{0, 0};
+		gbl_panelCabecera.columnWeights = new double[]{0.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_panelCabecera.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		panelCabecera.setLayout(gbl_panelCabecera);
+		
+		JLabel labelUsuario = new JLabel("Estas conectado como "+ventana.usuarioLogueado.getNombre());
+		labelUsuario.setHorizontalAlignment(SwingConstants.LEFT);
+		labelUsuario.setForeground(new Color(245, 196, 74));
+		GridBagConstraints gbc_labelUsuario = new GridBagConstraints();
+		gbc_labelUsuario.anchor = GridBagConstraints.WEST;
+		gbc_labelUsuario.insets = new Insets(0, 0, 0, 5);
+		gbc_labelUsuario.gridx = 1;
+		gbc_labelUsuario.gridy = 0;
+		panelCabecera.add(labelUsuario, gbc_labelUsuario);
+		
+		JLabel etiquetaBicicletas = new JLabel("BICICLETAS");
+		etiquetaBicicletas.setHorizontalAlignment(SwingConstants.CENTER);
+		etiquetaBicicletas.setForeground(new Color(245, 196, 74));
+		etiquetaBicicletas.setFont(new Font("Eras Medium ITC", Font.BOLD, 50));
+		etiquetaBicicletas.setBackground(new Color(245, 196, 74));
+		GridBagConstraints gbc_etiquetaBicicletas = new GridBagConstraints();
+		gbc_etiquetaBicicletas.anchor = GridBagConstraints.EAST;
+		gbc_etiquetaBicicletas.insets = new Insets(0, 0, 0, 5);
+		gbc_etiquetaBicicletas.gridx = 2;
+		gbc_etiquetaBicicletas.gridy = 0;
+		panelCabecera.add(etiquetaBicicletas, gbc_etiquetaBicicletas);
 
         ArrayList<Bicicleta> todasLasBicicletas = null;
         try {

@@ -4,6 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
@@ -59,6 +62,38 @@ public class PantallaListadoAlimentacion extends JPanel{
 
 		Dimension panelSize = new Dimension(10, 50); // Definir las dimensiones deseadas (ancho x alto)
 		contenedorElementos.setPreferredSize(panelSize); // Establecer las dimensiones preferidas del panel
+		
+		JPanel panelCabecera = new JPanel();
+		panelCabecera.setBackground(new Color(78, 1, 23));
+		add(panelCabecera, BorderLayout.NORTH);
+		GridBagLayout gbl_panelCabecera = new GridBagLayout();
+		gbl_panelCabecera.columnWidths = new int[]{10, 0, 0, 50, 0};
+		gbl_panelCabecera.rowHeights = new int[]{0, 0};
+		gbl_panelCabecera.columnWeights = new double[]{0.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_panelCabecera.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		panelCabecera.setLayout(gbl_panelCabecera);
+		
+		JLabel labelUsuario = new JLabel("Estas conectado como "+ventana.usuarioLogueado.getNombre());
+		labelUsuario.setHorizontalAlignment(SwingConstants.LEFT);
+		labelUsuario.setForeground(new Color(245, 196, 74));
+		GridBagConstraints gbc_labelUsuario = new GridBagConstraints();
+		gbc_labelUsuario.anchor = GridBagConstraints.WEST;
+		gbc_labelUsuario.insets = new Insets(0, 0, 0, 5);
+		gbc_labelUsuario.gridx = 1;
+		gbc_labelUsuario.gridy = 0;
+		panelCabecera.add(labelUsuario, gbc_labelUsuario);
+		
+		JLabel etiquetaAlimentos = new JLabel("ACCESORIOS");
+		etiquetaAlimentos.setHorizontalAlignment(SwingConstants.CENTER);
+		etiquetaAlimentos.setForeground(new Color(245, 196, 74));
+		etiquetaAlimentos.setFont(new Font("Eras Medium ITC", Font.BOLD, 50));
+		etiquetaAlimentos.setBackground(new Color(245, 196, 74));
+		GridBagConstraints gbc_etiquetaAlimentos = new GridBagConstraints();
+		gbc_etiquetaAlimentos.anchor = GridBagConstraints.EAST;
+		gbc_etiquetaAlimentos.insets = new Insets(0, 0, 0, 5);
+		gbc_etiquetaAlimentos.gridx = 2;
+		gbc_etiquetaAlimentos.gridy = 0;
+		panelCabecera.add(etiquetaAlimentos, gbc_etiquetaAlimentos);
 
 		lista.setViewportView(contenedorElementos);
 		

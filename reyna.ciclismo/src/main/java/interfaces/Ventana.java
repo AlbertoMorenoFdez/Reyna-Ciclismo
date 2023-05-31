@@ -12,9 +12,9 @@ import clases.Usuario;
 public class Ventana extends JFrame {
 	protected Carrito carrito;
 	protected Usuario usuarioLogueado;
-	
+
 	public Carrito getCarrito() {
-	    return carrito;
+		return carrito;
 	}
 
 	public Ventana() {
@@ -32,8 +32,8 @@ public class Ventana extends JFrame {
 		JLabel labelFondo = new JLabel(imagenFondo);
 		this.setContentPane(labelFondo);
 
-		//this.setContentPane(new Marco(this));
-		// ((Marco)this.getContentPane()).ponerContenido(new PantallaLogin(this));
+		// this.setContentPane(new Marco(this));
+		// (Marco)this.getContentPane()).ponerContenido(new PantallaLogin(this));
 		this.setContentPane(new PantallaLogin(this));
 // 		this.setContentPane(new PantallaRegistro(this));
 // 		this.setContentPane(new PantallaAdministracion(this));
@@ -78,20 +78,11 @@ public class Ventana extends JFrame {
 		if (clase.equals(PantallaModificarAccesorio.class)) {
 			this.setContentPane(new PantallaModificarAccesorio(this));
 		}
-		if (clase.equals(PantallaModificarProducto.class)) {
-			this.setContentPane(new PantallaModificarProducto(this));
-		}
 		if (clase.equals(PantallaAltaProveedor.class)) {
 			this.setContentPane(new PantallaAltaProveedor(this));
 		}
-		if (clase.equals(PantallaPreviaModificarProveedor.class)) {
-			this.setContentPane(new PantallaPreviaModificarProveedor(this));
-		}
 		if (clase.equals(PantallaModificarProveedor.class)) {
 			this.setContentPane(new PantallaModificarProveedor(this));
-		}
-		if (clase.equals(PantallaPreviaModificarCliente.class)) {
-			this.setContentPane(new PantallaPreviaModificarCliente(this));
 		}
 		if (clase.equals(PantallaModificarCliente.class)) {
 			this.setContentPane(new PantallaModificarCliente(this));
@@ -111,7 +102,7 @@ public class Ventana extends JFrame {
 		if (clase.equals(PantallaListadoAlimentacion.class)) {
 			this.setContentPane(new PantallaListadoAlimentacion(this));
 		}
-		if(clase.equals(PantallaCarrito.class)) {
+		if (clase.equals(PantallaCarrito.class)) {
 			this.setContentPane(new PantallaCarrito(this));
 		}
 

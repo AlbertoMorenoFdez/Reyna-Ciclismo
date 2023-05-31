@@ -211,6 +211,13 @@ public class PantallaModificarBicicleta extends JPanel {
 		botonAceptar.setFont(new Font("Eras Medium ITC", Font.PLAIN, 25));
 		botonAceptar.setBackground(new Color(245, 196, 74));
 		add(botonAceptar);
+		
+		JLabel labelUsuario = new JLabel("Estas conectado como "+ventana.usuarioLogueado.getNombre());
+		labelUsuario.setHorizontalAlignment(SwingConstants.LEFT);
+		labelUsuario.setForeground(new Color(245, 196, 74));
+		labelUsuario.setBackground(new Color(245, 196, 74));
+		labelUsuario.setBounds(50, 24, 230, 14);
+		add(labelUsuario);
 
 	}
 }

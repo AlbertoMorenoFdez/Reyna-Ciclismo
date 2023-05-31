@@ -125,6 +125,7 @@ public class ElementoListaBici extends JPanel {
 			}
 		});
 		add(botonVer);
+		
 		JButton botonAgregar = new JButton("Agregar al carrito");
 		botonAgregar.setFont(new Font("Calibri", Font.PLAIN, 15));
 		botonAgregar.setForeground(new Color(78, 1, 23));
@@ -142,7 +143,7 @@ public class ElementoListaBici extends JPanel {
 		        ventana.getCarrito().añadirCarrito(productosComprados);
 
 		        // Mostrar un mensaje de éxito
-		        JOptionPane.showMessageDialog(ventana, "La bicicleta se agregó al carrito.", "Éxito",
+		        JOptionPane.showMessageDialog(ventana, "La bicicleta se agregó al carrito.", "Enhorabuena",
 		                JOptionPane.INFORMATION_MESSAGE);
 		        ventana.cambiarAPantalla(PantallaCarrito.class);
 		    }

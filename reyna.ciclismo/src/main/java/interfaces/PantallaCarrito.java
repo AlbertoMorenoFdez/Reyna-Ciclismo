@@ -18,124 +18,13 @@ import clases.Producto;
 import clases.ProductosComprados;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import java.awt.Color;
+import javax.swing.border.LineBorder;
 
-//public class PantallaCarrito extends JPanel {
-//    private Ventana ventana;
-//
-//    public PantallaCarrito(Ventana v) {
-//        this.ventana = v;
-//
-//        setLayout(new BorderLayout());
-//
-//        JLabel etiquetaTitulo = new JLabel("Carrito de Compras");
-//        etiquetaTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-//        etiquetaTitulo.setFont(new Font("Eras Medium ITC", Font.BOLD, 24));
-//        add(etiquetaTitulo, BorderLayout.NORTH);
-//
-//        JPanel panelProductos = new JPanel();
-//        panelProductos.setLayout(new BoxLayout(panelProductos, BoxLayout.X_AXIS));
-//        JScrollPane scrollPane = new JScrollPane(panelProductos);
-//        add(scrollPane, BorderLayout.CENTER);
-//
-//        LinkedHashSet<ProductosComprados> productosComprados = ventana.getCarrito().getProductosComprados();
-//
-//        for (ProductosComprados pc : productosComprados) {
-//            JLabel etiquetaProducto = new JLabel("Productos:");
-//            etiquetaProducto.setFont(new Font("Eras Medium ITC", Font.PLAIN, 16));
-//            panelProductos.add(etiquetaProducto);
-//
-//            for (Producto producto : pc.getProductos()) {
-//            	
-//            	JLabel etiquetaMarca = new JLabel("Marca: " + producto.getMarca());
-//                etiquetaMarca.setFont(new Font("Eras Medium ITC", Font.PLAIN, 14));
-//                panelProductos.add(etiquetaMarca, BorderLayout.CENTER);
-//
-//                
-//                JLabel etiquetaNombreProducto = new JLabel(producto.getModelo());
-//                etiquetaNombreProducto.setFont(new Font("Eras Medium ITC", Font.PLAIN, 14));
-//                panelProductos.add(etiquetaNombreProducto);
-//                
-//                JLabel etiquetaPrecio = new JLabel("Precio: " + producto.getPrecio() + " €");
-//                etiquetaPrecio.setFont(new Font("Eras Medium ITC", Font.PLAIN, 14));
-//                panelProductos.add(etiquetaPrecio, BorderLayout.EAST);
-//            }
-//
-//            panelProductos.add(new JSeparator());
-//        }
-//
-//        JButton botonVolver = new JButton("Volver");
-//        botonVolver.addMouseListener(new MouseAdapter() {
-//        	@Override
-//        	public void mouseClicked(MouseEvent e) {
-//        		ventana.cambiarAPantalla(PantallaMenuProductos.class);
-//        	}
-//        });
-//        botonVolver.setFont(new Font("Eras Medium ITC", Font.PLAIN, 16));
-//        
-//        add(botonVolver, BorderLayout.SOUTH);
-//    }
-//}
 
-//public class PantallaCarrito extends JPanel {
-//    private Ventana ventana;
-//
-//    public PantallaCarrito(Ventana v) {
-//        this.ventana = v;
-//        float totalImporte=(float) 0.0;
-//        setLayout(new BorderLayout());
-//
-//        JLabel etiquetaTitulo = new JLabel("Carrito de Compras");
-//        etiquetaTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-//        etiquetaTitulo.setFont(new Font("Eras Medium ITC", Font.BOLD, 24));
-//        add(etiquetaTitulo, BorderLayout.NORTH);
-//
-//        // Crear el modelo de datos para la tabla
-//        DefaultTableModel modeloTabla = new DefaultTableModel();
-//        modeloTabla.addColumn("Marca");
-//        modeloTabla.addColumn("Modelo");
-//        modeloTabla.addColumn("Precio");
-//
-//        // Obtener los productos del carrito
-//        LinkedHashSet<ProductosComprados> productosComprados = ventana.getCarrito().getProductosComprados();
-//
-//        // Recorrer los productos y agregarlos al modelo de datos
-//        for (ProductosComprados pc : productosComprados) {
-//            for (Producto producto : pc.getProductos()) {
-//            	float importeProducto=producto.getPrecio();
-//            	totalImporte+=importeProducto;
-//                Object[] fila = {
-//                        producto.getMarca(),
-//                        producto.getModelo(),
-//                        producto.getPrecio()
-//                };
-//                modeloTabla.addRow(fila);
-//            }
-//        }
-//
-//        // Crear la tabla y asignarle el modelo de datos
-//        JTable tablaProductos = new JTable(modeloTabla);
-//
-//        // Agregar la tabla a un JScrollPane
-//        JScrollPane scrollPane = new JScrollPane(tablaProductos);
-//        add(scrollPane, BorderLayout.CENTER);
-        
-//     // Etiqueta para mostrar el total del importe
-//        JLabel etiquetaTotal = new JLabel("Total: " + totalImporte + " €");
-//        etiquetaTotal.setFont(new Font("Eras Medium ITC", Font.PLAIN, 16));
-//        add(etiquetaTotal, BorderLayout.SOUTH);
-
-//        JButton botonVolver = new JButton("Volver");
-//      botonVolver.addMouseListener(new MouseAdapter() {
-//      	@Override
-//      	public void mouseClicked(MouseEvent e) {
-//      		ventana.cambiarAPantalla(PantallaMenuProductos.class);
-//      	}
-//      });
-//      botonVolver.setFont(new Font("Eras Medium ITC", Font.PLAIN, 16));
-//      
-//      add(botonVolver, BorderLayout.SOUTH);
-//    }
-//}
 
 public class PantallaCarrito extends JPanel {
     private Ventana ventana;
@@ -145,18 +34,14 @@ public class PantallaCarrito extends JPanel {
         float totalImporte = (float) 0.0;
         setLayout(new BorderLayout());
 
-        JPanel panelPrincipal = new JPanel(new BorderLayout()); // JPanel principal
-
-        JLabel etiquetaTitulo = new JLabel("Carrito de Compras");
-        etiquetaTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-        etiquetaTitulo.setFont(new Font("Eras Medium ITC", Font.BOLD, 24));
-        panelPrincipal.add(etiquetaTitulo, BorderLayout.NORTH);
+        JPanel panelPrincipal = new JPanel(new BorderLayout());
 
         // Crear el modelo de datos para la tabla
         DefaultTableModel modeloTabla = new DefaultTableModel();
+        
         modeloTabla.addColumn("Marca");
         modeloTabla.addColumn("Modelo");
-        modeloTabla.addColumn("Precio");
+        modeloTabla.addColumn("Precio (€)");
 
         // Obtener los productos del carrito
         LinkedHashSet<ProductosComprados> productosComprados = ventana.getCarrito().getProductosComprados();
@@ -167,9 +52,10 @@ public class PantallaCarrito extends JPanel {
                 float importeProducto = producto.getPrecio();
                 totalImporte += importeProducto;
                 Object[] fila = {
+                		
                         producto.getMarca(),
                         producto.getModelo(),
-                        producto.getPrecio()
+                        producto.getPrecio()+" €"
                 };
                 modeloTabla.addRow(fila);
             }
@@ -179,31 +65,86 @@ public class PantallaCarrito extends JPanel {
         JTable tablaProductos = new JTable(modeloTabla);
 
         // Agregar la tabla a un JScrollPane
-        JScrollPane scrollPane = new JScrollPane(tablaProductos);
-        panelPrincipal.add(scrollPane, BorderLayout.CENTER);
+        JScrollPane listaCarrito = new JScrollPane(tablaProductos);
+        listaCarrito.setViewportBorder(new LineBorder(new Color(78, 1, 23), 15));
+        panelPrincipal.add(listaCarrito, BorderLayout.CENTER);
 
         // Agregar el panel principal al panel PantallaCarrito
         add(panelPrincipal, BorderLayout.CENTER);
+        
+        JPanel panelTitulo = new JPanel();
+        panelTitulo.setBackground(new Color(78, 1, 23));
+        panelPrincipal.add(panelTitulo, BorderLayout.NORTH);
+        GridBagLayout gbl_panelTitulo = new GridBagLayout();
+        gbl_panelTitulo.columnWidths = new int[]{10, 173, 49, 50, 0};
+        gbl_panelTitulo.rowHeights = new int[]{14, 0};
+        gbl_panelTitulo.columnWeights = new double[]{0.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
+        gbl_panelTitulo.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+        panelTitulo.setLayout(gbl_panelTitulo);
+        
+        JLabel labelUsuario = new JLabel("Estas conectado como "+ventana.usuarioLogueado.getNombre());
+        labelUsuario.setForeground(new Color(245, 196, 74));
+        GridBagConstraints gbc_labelUsuario = new GridBagConstraints();
+        gbc_labelUsuario.anchor = GridBagConstraints.WEST;
+        gbc_labelUsuario.insets = new Insets(0, 0, 0, 5);
+        gbc_labelUsuario.gridx = 1;
+        gbc_labelUsuario.gridy = 0;
+        panelTitulo.add(labelUsuario, gbc_labelUsuario);
+        
+        JLabel etiquetaCarrito = new JLabel("CARRITO");
+        etiquetaCarrito.setHorizontalAlignment(SwingConstants.CENTER);
+        etiquetaCarrito.setForeground(new Color(245, 196, 74));
+        etiquetaCarrito.setFont(new Font("Eras Medium ITC", Font.BOLD, 50));
+        etiquetaCarrito.setBackground(new Color(245, 196, 74));
+        GridBagConstraints gbc_etiquetaCarrito = new GridBagConstraints();
+        gbc_etiquetaCarrito.anchor = GridBagConstraints.EAST;
+        gbc_etiquetaCarrito.insets = new Insets(0, 0, 0, 5);
+        gbc_etiquetaCarrito.gridx = 2;
+        gbc_etiquetaCarrito.gridy = 0;
+        panelTitulo.add(etiquetaCarrito, gbc_etiquetaCarrito);
 
         // JPanel para el botón de volver y la etiqueta del total del importe
         JPanel panelFooter = new JPanel(new BorderLayout());
         
+        add(panelFooter, BorderLayout.SOUTH);
+        
+        JPanel panelBajoCarrito = new JPanel();
+        panelBajoCarrito.setBackground(new Color(78, 1, 23));
+        panelFooter.add(panelBajoCarrito, BorderLayout.NORTH);
+        GridBagLayout gbl_panelBajoCarrito = new GridBagLayout();
+        gbl_panelBajoCarrito.columnWidths = new int[]{50, 78, 0, 77, 50, 0};
+        gbl_panelBajoCarrito.rowHeights = new int[]{20, 27, 20, 0};
+        gbl_panelBajoCarrito.columnWeights = new double[]{0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
+        gbl_panelBajoCarrito.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+        panelBajoCarrito.setLayout(gbl_panelBajoCarrito);
+        
         JButton botonVolver = new JButton("Volver");
         botonVolver.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                ventana.cambiarAPantalla(PantallaMenuProductos.class);
-            }
+        	@Override
+        	public void mouseClicked(MouseEvent e) {
+        		ventana.cambiarAPantalla(PantallaMenuProductos.class);
+        	}
         });
+        botonVolver.setForeground(new Color(78, 1, 23));
+        botonVolver.setBackground(new Color(245, 196, 74));
         botonVolver.setFont(new Font("Eras Medium ITC", Font.PLAIN, 16));
-        panelFooter.add(botonVolver, BorderLayout.WEST);
+        GridBagConstraints gbc_botonVolver = new GridBagConstraints();
+        gbc_botonVolver.insets = new Insets(0, 0, 5, 5);
+        gbc_botonVolver.anchor = GridBagConstraints.NORTHWEST;
+        gbc_botonVolver.gridx = 1;
+        gbc_botonVolver.gridy = 1;
+        panelBajoCarrito.add(botonVolver, gbc_botonVolver);
         
         JLabel etiquetaTotal = new JLabel("Total: " + totalImporte + " €");
-        etiquetaTotal.setFont(new Font("Eras Medium ITC", Font.PLAIN, 16));
+        etiquetaTotal.setForeground(new Color(245, 196, 74));
         etiquetaTotal.setHorizontalAlignment(SwingConstants.RIGHT);
-        panelFooter.add(etiquetaTotal, BorderLayout.EAST);
-        
-        add(panelFooter, BorderLayout.SOUTH);
+        etiquetaTotal.setFont(new Font("Eras Medium ITC", Font.PLAIN, 16));
+        GridBagConstraints gbc_etiquetaTotal = new GridBagConstraints();
+        gbc_etiquetaTotal.anchor = GridBagConstraints.WEST;
+        gbc_etiquetaTotal.insets = new Insets(0, 0, 5, 5);
+        gbc_etiquetaTotal.gridx = 3;
+        gbc_etiquetaTotal.gridy = 1;
+        panelBajoCarrito.add(etiquetaTotal, gbc_etiquetaTotal);
     }
     
 }
