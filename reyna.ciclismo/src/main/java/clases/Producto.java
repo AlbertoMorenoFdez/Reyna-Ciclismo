@@ -9,6 +9,7 @@ import java.util.LinkedHashSet;
 import java.util.Objects;
 
 import excepciones.ProductoNoExisteException;
+import excepciones.ProveedorNoExisteException;
 import utils.DAO;
 
 public class Producto {
@@ -18,7 +19,6 @@ public class Producto {
 	protected String descripcion;
 	protected int EAN;
 	protected float precio;
-
 	protected Proveedor proveedor;
 	
 	public Producto(String marca, String modelo, String color, String descripcion, float precio, Proveedor proveedor)
@@ -32,7 +32,7 @@ public class Producto {
 
 // Constructor para insertar productos
 	public Producto(String marca, String modelo, String color, String descripcion, int ean, float precio)
-			throws SQLException {
+			throws SQLException, ProveedorNoExisteException {
 
 		this.marca = marca;
 		this.modelo = modelo;

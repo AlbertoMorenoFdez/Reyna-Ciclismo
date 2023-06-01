@@ -2,6 +2,7 @@ package interfaces;
 
 import java.awt.Color;
 
+
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -13,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 import clases.Proveedor;
 import clases.Usuario;
 import excepciones.NombreConNumeroException;
+import excepciones.ProveedorNoExisteException;
 import utils.DAO;
 
 import javax.swing.JRadioButton;
@@ -103,6 +105,7 @@ public class PantallaModificarProveedor extends JPanel {
 		JButton botonAceptar = new JButton("Aceptar");
 		botonAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Proveedor proveedor = new Proveedor();
 				if (tablaProveedores.getCellEditor() != null) {
 					tablaProveedores.getCellEditor().stopCellEditing();
 					// Obtener los datos seleccionados en la tabla
@@ -120,7 +123,7 @@ public class PantallaModificarProveedor extends JPanel {
 					}
 					String cif = (String) model.getValueAt(tablaProveedores.getSelectedRow(), 0);
 					String email = (String) model.getValueAt(tablaProveedores.getSelectedRow(), 4);
-
+					
 					// Crear los HashMap de datos a modificar y restricciones
 					HashMap<String, Object> datosAModificar = new HashMap<>();
 					datosAModificar.put("correo_electronico", email);
@@ -140,13 +143,11 @@ public class PantallaModificarProveedor extends JPanel {
 								+ telefonoInt + "\n" + "CIF: " + cif;
 						JOptionPane.showMessageDialog(ventana, mensaje, "Proveedor modificado correctamente",
 								JOptionPane.INFORMATION_MESSAGE);
-					} 
-						catch (SQLIntegrityConstraintViolationException e3) {
+					} catch (SQLIntegrityConstraintViolationException e3) {
 						JOptionPane.showMessageDialog(ventana, "El nombre ya está en uso", "No se pudo actualizar",
 								JOptionPane.ERROR_MESSAGE);
 
-					} 
-					catch (SQLException e4) {
+					} catch (SQLException e4) {
 						JOptionPane.showMessageDialog(ventana, e4.getMessage(),
 								"No se puede conectar a la base de datos", JOptionPane.ERROR_MESSAGE);
 						e4.printStackTrace();
@@ -194,7 +195,7 @@ public class PantallaModificarProveedor extends JPanel {
 		lblYPulsaAceptar.setBackground(new Color(245, 196, 74));
 		lblYPulsaAceptar.setBounds(100, 184, 600, 32);
 		add(lblYPulsaAceptar);
-		
+
 		JLabel lblrealizaCambios = new JLabel("realiza los cambios que quieras");
 		lblrealizaCambios.setHorizontalAlignment(SwingConstants.CENTER);
 		lblrealizaCambios.setForeground(new Color(245, 196, 74));
@@ -202,14 +203,14 @@ public class PantallaModificarProveedor extends JPanel {
 		lblrealizaCambios.setBackground(new Color(245, 196, 74));
 		lblrealizaCambios.setBounds(100, 149, 600, 32);
 		add(lblrealizaCambios);
-		
-		JLabel labelUsuario = new JLabel("Estas conectado como "+ventana.usuarioLogueado.getNombre());
+
+		JLabel labelUsuario = new JLabel("Estas conectado como " + ventana.usuarioLogueado.getNombre());
 		labelUsuario.setHorizontalAlignment(SwingConstants.LEFT);
 		labelUsuario.setForeground(new Color(245, 196, 74));
 		labelUsuario.setBackground(new Color(245, 196, 74));
 		labelUsuario.setBounds(50, 24, 230, 14);
 		add(labelUsuario);
-		
+
 		BotonLogOut botonLogOut = new BotonLogOut();
 		botonLogOut.addMouseListener(new MouseAdapter() {
 			@Override

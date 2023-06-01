@@ -105,7 +105,7 @@ public class PantallaLogin extends JPanel {
 		add(etiquetaUsuario, gbc_etiquetaUsuario);
 		
 		campoUsuario = new JTextField();
-		//campoUsuario.setText("admin@admin");
+		campoUsuario.setText("admin@admin");
 		//campoUsuario.setText("u");
 		campoUsuario.setFont(new Font("Arial Black", Font.PLAIN, 25));
 		GridBagConstraints gbc_campoUsuario = new GridBagConstraints();
@@ -130,7 +130,7 @@ public class PantallaLogin extends JPanel {
 		add(etiquetaContraseña, gbc_etiquetaContraseña);
 		
 		campoContraseña = new JPasswordField();
-		//campoContraseña.setText("admin");
+		campoContraseña.setText("admin");
 		//campoContraseña.setText("admin");
 		campoContraseña.setFont(new Font("Arial Black", Font.PLAIN, 25));
 		GridBagConstraints gbc_campoContraseña = new GridBagConstraints();
@@ -172,7 +172,7 @@ public class PantallaLogin extends JPanel {
 					JOptionPane.showMessageDialog(ventana, e1.getMessage(), "Login fallido", JOptionPane.ERROR_MESSAGE);
 					e1.printStackTrace();
 				} catch (UsuarioNoExisteException e1) {
-					JOptionPane.showMessageDialog(ventana, "El cliente no existe", "Login fallido",
+					JOptionPane.showMessageDialog(ventana, "El usuario no existe", "Login fallido",
 							JOptionPane.ERROR_MESSAGE);
 					e1.printStackTrace();
 				} catch (ContraseñaInvalidaException e1) {

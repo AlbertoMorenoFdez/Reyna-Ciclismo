@@ -15,6 +15,7 @@ import clases.Bicicleta;
 import clases.Producto;
 import enumReyna.ModalidadBicicleta;
 import excepciones.ProveedorNoExisteException;
+import utils.DAO;
 
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
@@ -452,6 +453,7 @@ public class PantallaAltaProducto extends JPanel {
 					}
 
 					String proveedor = campoProveedor.getText();
+					
 					if (radioBotonBicicleta.isSelected()) {
 						ModalidadBicicleta modBicicleta = ModalidadBicicleta.valueOf(modalidad);
 						new Bicicleta(marca, modelo, color, descripcion, ean, precio, modBicicleta, tallaBicicleta,
@@ -460,9 +462,13 @@ public class PantallaAltaProducto extends JPanel {
 						new Alimentacion(marca, modelo, color, descripcion, ean, precio, calorias, proveedor);
 					} else if (radioBotonAccesorio.isSelected()) {
 						new Accesorio(marca, modelo, color, descripcion, ean, precio, talla, proveedor);
+					}else {
+						JOptionPane.showMessageDialog(ventana, "Tienes que seleccionar una categoria", "Error",
+								JOptionPane.ERROR_MESSAGE);
 					}
 					JOptionPane.showMessageDialog(ventana, "Producto añadido correctamente", "¡Enhorabuena!",
 							JOptionPane.INFORMATION_MESSAGE);
+					
 					// Para limpiar todos los campos
 					campoMarca.setText("");
 					campoModelo.setText("");
@@ -479,21 +485,20 @@ public class PantallaAltaProducto extends JPanel {
 				catch (SQLIntegrityConstraintViolationException e1) {
 					JOptionPane.showMessageDialog(ventana, "El producto ya está dado de alta", "¡Ups, algo salió mal!",
 							JOptionPane.ERROR_MESSAGE);
-
-				} 
+				} catch (ProveedorNoExisteException e4) {
+					JOptionPane.showMessageDialog(ventana, "Tienes que indicar un proveedor existente", "Error",
+							JOptionPane.ERROR_MESSAGE);
+					
+				}				
 				catch (SQLException e2) {
 					JOptionPane.showMessageDialog(ventana, e2.getMessage(), "No se puede conectar a la base de datos",
 							JOptionPane.ERROR_MESSAGE);
 					e2.printStackTrace();
 
 				} catch (NumberFormatException e3) {
-					JOptionPane.showMessageDialog(ventana, "Olvidaste poner el CIF o la talla si procede", "Error",
+					JOptionPane.showMessageDialog(ventana, "El campo EAN y/o el campo precio sólo pueden recibir números", "Error",
 							JOptionPane.ERROR_MESSAGE);
-				} catch (ProveedorNoExisteException e4) {
-					JOptionPane.showMessageDialog(ventana, "Tienes que indicar un proveedor existente", "Error",
-							JOptionPane.ERROR_MESSAGE);
-					e4.printStackTrace();
-				}
+				} 
 
 			}
 		});

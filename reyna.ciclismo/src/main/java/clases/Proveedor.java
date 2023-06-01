@@ -17,6 +17,10 @@ public class Proveedor {
 	private String cif;
 	private String emailProveedor;
 	private Integer telefonoProveedor;
+	
+	public Proveedor() {
+		
+	}
 
 	public Proveedor(String nombre, String direccion, String emailProveedor, Integer telefonoProveedor) {
 		this.nombre = nombre;
