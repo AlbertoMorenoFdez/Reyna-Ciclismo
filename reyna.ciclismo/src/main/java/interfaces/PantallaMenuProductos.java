@@ -22,7 +22,7 @@ public class PantallaMenuProductos extends JPanel {
 		setSize(800, 700);
 		setBackground(new Color(78, 1, 23));
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[] { 70, 0, 0, 0, 0, 70, 0 };
+		gridBagLayout.columnWidths = new int[] { 50, 0, 0, 0, 0, 50, 0 };
 		gridBagLayout.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 		gridBagLayout.columnWeights = new double[] { 0.0, 1.0, 1.0, 1.0, 1.0, 0.0, Double.MIN_VALUE };
 		gridBagLayout.rowWeights = new double[] { 1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 1.0,
@@ -34,11 +34,26 @@ public class PantallaMenuProductos extends JPanel {
 		labelUsuario.setForeground(new Color(245, 196, 74));
 		labelUsuario.setBackground(new Color(245, 196, 74));
 		GridBagConstraints gbc_labelUsuario = new GridBagConstraints();
-		gbc_labelUsuario.gridwidth = 3;
+		gbc_labelUsuario.anchor = GridBagConstraints.WEST;
+		gbc_labelUsuario.gridwidth = 2;
 		gbc_labelUsuario.insets = new Insets(0, 0, 5, 5);
-		gbc_labelUsuario.gridx = 0;
+		gbc_labelUsuario.gridx = 1;
 		gbc_labelUsuario.gridy = 0;
 		add(labelUsuario, gbc_labelUsuario);
+		
+		BotonLogOut botonLogOut = new BotonLogOut();
+		botonLogOut.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ventana.cambiarAPantalla(PantallaLogin.class);
+			}
+		});
+		GridBagConstraints gbc_botonLogOut = new GridBagConstraints();
+		gbc_botonLogOut.anchor = GridBagConstraints.EAST;
+		gbc_botonLogOut.insets = new Insets(0, 0, 5, 5);
+		gbc_botonLogOut.gridx = 4;
+		gbc_botonLogOut.gridy = 0;
+		add(botonLogOut, gbc_botonLogOut);
 
 		JLabel etiquetaProductos = new JLabel("Productos");
 		etiquetaProductos.setHorizontalAlignment(SwingConstants.CENTER);

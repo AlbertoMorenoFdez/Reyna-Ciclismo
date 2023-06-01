@@ -71,6 +71,20 @@ public class PantallaAltaProducto extends JPanel {
 		gbc_lblNewLabel.gridx = 1;
 		gbc_lblNewLabel.gridy = 0;
 		add(lblNewLabel, gbc_lblNewLabel);
+		
+		BotonLogOut botonLogOut=new BotonLogOut();
+		botonLogOut.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ventana.cambiarAPantalla(PantallaLogin.class);
+			}
+		});
+		GridBagConstraints gbc_botonLogOut = new GridBagConstraints();
+		gbc_botonLogOut.anchor = GridBagConstraints.EAST;
+		gbc_botonLogOut.insets = new Insets(0, 0, 5, 5);
+		gbc_botonLogOut.gridx = 4;
+		gbc_botonLogOut.gridy = 0;
+		add(botonLogOut, gbc_botonLogOut);
 
 		JLabel etiquetaAltaProducto = new JLabel("ALTA DE PRODUCTO");
 		etiquetaAltaProducto.setHorizontalAlignment(SwingConstants.CENTER);

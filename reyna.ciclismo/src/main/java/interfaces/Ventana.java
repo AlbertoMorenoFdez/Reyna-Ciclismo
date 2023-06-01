@@ -90,9 +90,6 @@ public class Ventana extends JFrame {
 		if (clase.equals(PantallaMenuProductos.class)) {
 			this.setContentPane(new PantallaMenuProductos(this));
 		}
-		if (clase.equals(PantallaMenuBicicletas.class)) {
-			this.setContentPane(new PantallaMenuBicicletas(this));
-		}
 		if (clase.equals(PantallaListadoBicicletas.class)) {
 			this.setContentPane(new PantallaListadoBicicletas(this));
 		}

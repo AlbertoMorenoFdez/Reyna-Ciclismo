@@ -32,26 +32,6 @@ public class PantallaListadoAlimentacion extends JPanel{
 		setBackground(new Color(78, 1, 23));
 		setLayout(new BorderLayout(0, 0));
 		
-		JLabel etiquetaAlimentacion = new JLabel("ALIMENTACIÓN");
-		etiquetaAlimentacion.setHorizontalAlignment(SwingConstants.CENTER);
-		etiquetaAlimentacion.setForeground(new Color(245, 196, 74));
-		etiquetaAlimentacion.setFont(new Font("Eras Medium ITC", Font.BOLD, 50));
-		etiquetaAlimentacion.setBackground(new Color(245, 196, 74));
-		add(etiquetaAlimentacion, BorderLayout.NORTH);
-		
-		JButton botonAtras = new JButton("Volver");
-		botonAtras.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				ventana.cambiarAPantalla(PantallaMenuProductos.class);
-			}
-		});
-		
-		botonAtras.setForeground(new Color(78, 1, 23));
-		botonAtras.setFont(new Font("Eras Medium ITC", Font.PLAIN, 25));
-		botonAtras.setBackground(new Color(245, 196, 74));
-		add(botonAtras, BorderLayout.SOUTH);
-		
 		JScrollPane lista = new JScrollPane();
 		lista.setViewportBorder(new LineBorder(new Color(78, 1, 23), 15));
 		add(lista, BorderLayout.CENTER);
@@ -97,6 +77,63 @@ public class PantallaListadoAlimentacion extends JPanel{
 
 		lista.setViewportView(contenedorElementos);
 		
+		JPanel panelPie = new JPanel();
+		panelPie.setBackground(new Color(78, 1, 23));
+		add(panelPie, BorderLayout.SOUTH);
+		GridBagLayout gbl_panelPie = new GridBagLayout();
+		gbl_panelPie.columnWidths = new int[]{50, 0, 0, 0, 0, 0, 50, 0};
+		gbl_panelPie.rowHeights = new int[]{10, 0, 10, 0};
+		gbl_panelPie.columnWeights = new double[]{0.0, 0.0, 1.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panelPie.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+		panelPie.setLayout(gbl_panelPie);
+		
+		JButton botonAtras = new JButton("Volver");
+		botonAtras.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ventana.cambiarAPantalla(PantallaMenuProductos.class);
+			}
+		});
+		botonAtras.setForeground(new Color(78, 1, 23));
+		botonAtras.setFont(new Font("Eras Medium ITC", Font.PLAIN, 25));
+		botonAtras.setBackground(new Color(245, 196, 74));
+		GridBagConstraints gbc_botonAtras = new GridBagConstraints();
+		gbc_botonAtras.insets = new Insets(0, 0, 5, 5);
+		gbc_botonAtras.gridx = 1;
+		gbc_botonAtras.gridy = 1;
+		panelPie.add(botonAtras, gbc_botonAtras);
+		
+		BotonLogOut botonLogOut = new BotonLogOut();
+		botonLogOut.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ventana.cambiarAPantalla(PantallaLogin.class);
+			}
+			
+		});
+		GridBagConstraints gbc_botonLogOut = new GridBagConstraints();
+		gbc_botonLogOut.fill = GridBagConstraints.BOTH;
+		gbc_botonLogOut.insets = new Insets(0, 0, 5, 5);
+		gbc_botonLogOut.gridx = 3;
+		gbc_botonLogOut.gridy = 1;
+		panelPie.add(botonLogOut, gbc_botonLogOut);
+		
+		JButton botonIrCarrito = new JButton("Ver carrito");
+		botonIrCarrito.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ventana.cambiarAPantalla(PantallaCarrito.class);
+			}
+		});
+		botonIrCarrito.setForeground(new Color(78, 1, 23));
+		botonIrCarrito.setFont(new Font("Eras Medium ITC", Font.PLAIN, 25));
+		botonIrCarrito.setBackground(new Color(245, 196, 74));
+		GridBagConstraints gbc_botonIrCarrito = new GridBagConstraints();
+		gbc_botonIrCarrito.insets = new Insets(0, 0, 5, 5);
+		gbc_botonIrCarrito.gridx = 5;
+		gbc_botonIrCarrito.gridy = 1;
+		panelPie.add(botonIrCarrito, gbc_botonIrCarrito);
+			
 		ArrayList<Alimentacion>todaLaAlimentacion = null;
 		
 		try {

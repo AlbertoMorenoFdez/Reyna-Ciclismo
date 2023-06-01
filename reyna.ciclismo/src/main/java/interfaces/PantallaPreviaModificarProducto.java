@@ -65,6 +65,20 @@ public class PantallaPreviaModificarProducto extends JPanel {
 		gbc_labelUsuario.gridx = 1;
 		gbc_labelUsuario.gridy = 0;
 		add(labelUsuario, gbc_labelUsuario);
+		
+		BotonLogOut botonLogOut = new BotonLogOut();
+		botonLogOut.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ventana.cambiarAPantalla(PantallaLogin.class);
+			}
+		});
+		GridBagConstraints gbc_botonLogOut = new GridBagConstraints();
+		gbc_botonLogOut.anchor = GridBagConstraints.EAST;
+		gbc_botonLogOut.insets = new Insets(0, 0, 5, 5);
+		gbc_botonLogOut.gridx = 3;
+		gbc_botonLogOut.gridy = 0;
+		add(botonLogOut, gbc_botonLogOut);
 
 		JLabel etiquetaAltaProducto = new JLabel("MODIFICAR PRODUCTO");
 		etiquetaAltaProducto.setHorizontalAlignment(SwingConstants.CENTER);

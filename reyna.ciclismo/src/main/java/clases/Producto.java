@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
+import java.util.Objects;
 
 import excepciones.ProductoNoExisteException;
 import utils.DAO;
@@ -67,6 +68,23 @@ public class Producto {
 		this.proveedor = (Proveedor) datosProducto.get(10);
 
 	}
+	
+	@Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Producto other = (Producto) obj;
+        return EAN == other.EAN;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(EAN);
+    }
 
 	public String getMarca() {
 		return marca;

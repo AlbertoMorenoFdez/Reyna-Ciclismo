@@ -13,6 +13,8 @@ import java.awt.event.ActionEvent;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class PantallaAdministracion extends JPanel {
 	private Ventana ventana;
@@ -22,10 +24,10 @@ public class PantallaAdministracion extends JPanel {
 		setSize(800, 700);
 		setBackground(new Color(78, 1, 23));
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{50, 265, 75, 265, 50, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 58, 64, 42, 60, 40, 60, 40, 60, 40, 0, 0};
+		gridBagLayout.columnWidths = new int[]{70, 265, 75, 265, 70, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0, 58, 64, 42, 60, 40, 60, 40, 60, 40, 46, 0, 20, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 1.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
 		JLabel labelUsuario = new JLabel("Estas conectado como "+ventana.usuarioLogueado.getNombre());
@@ -38,6 +40,20 @@ public class PantallaAdministracion extends JPanel {
 		gbc_labelUsuario.gridx = 1;
 		gbc_labelUsuario.gridy = 0;
 		add(labelUsuario, gbc_labelUsuario);
+		
+		BotonLogOut botonLogOut=new BotonLogOut();
+		botonLogOut.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ventana.cambiarAPantalla(PantallaLogin.class);
+			}
+		});
+		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
+		gbc_btnNewButton.anchor = GridBagConstraints.EAST;
+		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNewButton.gridx = 3;
+		gbc_btnNewButton.gridy = 0;
+		add(botonLogOut, gbc_btnNewButton);
 		
 		JLabel etiquetaAdministracion = new JLabel("Administración");
 		etiquetaAdministracion.setHorizontalAlignment(SwingConstants.CENTER);

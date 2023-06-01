@@ -27,6 +27,8 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
@@ -189,6 +191,16 @@ public class PantallaModificarCliente extends JPanel {
 		labelUsuario.setBackground(new Color(245, 196, 74));
 		labelUsuario.setBounds(50, 24, 230, 14);
 		add(labelUsuario);
+		
+		BotonLogOut botonLogOut = new BotonLogOut();
+		botonLogOut.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ventana.cambiarAPantalla(PantallaLogin.class);
+			}
+		});
+		botonLogOut.setBounds(678, 20, 80, 23);
+		add(botonLogOut);
 
 	}
 }
