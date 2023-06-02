@@ -10,8 +10,8 @@ CREATE TABLE usuarios (
     numero_telefono INT(15)
 );
 
-INSERT INTO usuarios (correo_electronico, direccion, contraseña, DNI, numero_telefono) VALUES
-('admin@admin', 'calle del administrador','admin','12345678a',666000666);
+INSERT INTO usuarios (correo_electronico, nombre, direccion, contraseña, DNI, numero_telefono) VALUES
+('admin@admin', 'Administrador','calle del administrador','admin','12345678a',666000666);
 
 CREATE TABLE proveedores (
     cif VARCHAR(9) not null,
@@ -92,12 +92,13 @@ CREATE TABLE alimentacion (
 );
 
 INSERT INTO alimentacion (marca,modelo, ean, color, descripcion,precio,calorias,nombre_proveedor) VALUES
-('NUTRINOVEX','Glucobar',11,null,'barrita energetica sabor fresa',2.49,'175 cal', 'NUTRINOVEX'),
-('NUTRINOVEX','Longovit',12,null,'gel energetico sabor kiwi',2.99,'250 cal', 'NUTRINOVEX'),
-('INFISPORT','ND4',13,null,'polvos con hidratos de carbono',22.99,'999 cal', 'INFISPORT'),
-('INFISPORT','Magnesio',14,null,'sobres individuales de Mg',1.99,'n/d', 'INFISPORT'),
-('226ers','Race Day Bar',15,null,'barrita energetica sabor chocolate blanco',22.99,'120cal', '226ers'),
-('NUTRINOVEX','Suproplex Recovery 3.1',16,null,'Recuperador',37.95,'750 cal', 'NUTRINOVEX');
+('NUTRINOVEX','Glucobar',17,'','barrita energetica sabor fresa',2.49,'175 cal', 'NUTRINOVEX'),
+('NUTRINOVEX','Longovit',12,'','gel energetico sabor kiwi',2.99,'250 cal', 'NUTRINOVEX'),
+('INFISPORT','ND4',13,'','polvos con hidratos de carbono',22.99,'999 cal', 'INFISPORT'),
+('INFISPORT','Magnesio',14,'','sobres individuales de Mg',1.99,'n/d', 'INFISPORT'),
+('226ers','Race Day Bar',15,'','barrita energetica sabor chocolate blanco',22.99,'120cal', '226ers'),
+('NUTRINOVEX','Suproplex Recovery 3.1',16,'','Recuperador',37.95,'750 cal', 'NUTRINOVEX');
+
 
 
 CREATE TABLE accesorio (

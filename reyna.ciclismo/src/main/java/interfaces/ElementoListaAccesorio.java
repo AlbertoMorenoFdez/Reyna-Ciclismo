@@ -78,11 +78,18 @@ public ElementoListaAccesorio(Ventana v, Accesorio a) {
 			String modelo = accesorio.getModelo();
 			String imagenAccesorio = "";
 
-			if (marca.equals("Oakley") && modelo.equals("Sutro")) {
+			if (marca.equals("OAKLEY") && modelo.equals("Sutro S Lite")) {
 				imagenAccesorio = ".\\imagenes\\Oakley Sutro.jpg";
-			} else if (marca.equals("Shimano") && modelo.equals("XC90")) {
+			} else if (marca.equals("SHIMANO") && modelo.equals("XC90")) {
 				imagenAccesorio = ".\\imagenes\\XC9.jpg";
-			
+			} else if (marca.equals("CAMELBACK") && modelo.equals("Podium")) {
+				imagenAccesorio = ".\\imagenes\\bidon.jpg";
+			} else if (marca.equals("BLACKBURN") && modelo.equals("Multiherramientas")) {
+				imagenAccesorio = ".\\imagenes\\herramientas.jpg";
+			} else if (marca.equals("GOBIK") && modelo.equals("CX Pro 2")) {
+				imagenAccesorio = ".\\imagenes\\maillot.jpg";
+			} else if (marca.equals("GOBIK") && modelo.equals("Matt Nove Coli")) {
+				imagenAccesorio = ".\\imagenes\\culotte.jpg";
 			} else {
 			    // Imagen por defecto si no se cumple ninguna condición
 				imagenAccesorio = ".\\imagenes\\icono casco.png";

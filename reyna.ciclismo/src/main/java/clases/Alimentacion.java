@@ -72,6 +72,10 @@ public class Alimentacion extends Producto {
 			String calorias = (String) resultados.get(i + 6);
 			String nombreProveedor = (String) resultados.get(i + 7);
 			Proveedor proveedor=new Proveedor(nombreProveedor);
+			
+			 if (color == null) {
+			        color = ""; // Asignar un valor vacío
+			    }
 
 			Alimentacion alimentacion = new Alimentacion(marca, modelo, color, descripcion, precio, proveedor,
 					calorias);

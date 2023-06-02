@@ -79,11 +79,18 @@ public class ElementoListaAlimentacion extends JPanel{
 			String modelo = alimentacion.getModelo();
 			String imagenAlimentacion = "";
 
-			if (marca.equals("g") && modelo.equals("g")) {
-				imagenAlimentacion = ".\\imagenes\\nd4.jpg";
-			} else if (marca.equals("h") && modelo.equals("h")) {
+			if (marca.equals("NUTRINOVEX") && modelo.equals("Glucobar")) {
 				imagenAlimentacion = ".\\imagenes\\glucobar.jpg";
-			
+			} else if (marca.equals("NUTRINOVEX") && modelo.equals("Longovit")) {
+				imagenAlimentacion = ".\\imagenes\\gel.jpg";
+			} else if (marca.equals("INFISPORT") && modelo.equals("ND4")) {
+				imagenAlimentacion = ".\\imagenes\\nd4.jpg";
+			} else if (marca.equals("INFISPORT") && modelo.equals("Magnesio")) {
+				imagenAlimentacion = ".\\imagenes\\magnesio.jpg";
+			} else if (marca.equals("226ers") && modelo.equals("Race Day Bar")) {
+				imagenAlimentacion = ".\\imagenes\\barrita226.jpg";
+			} else if (marca.equals("NUTRINOVEX") && modelo.equals("Suproplex Recovery 3.1")) {
+				imagenAlimentacion = ".\\imagenes\\recuperador.jpg";
 			} else {
 			    // Imagen por defecto si no se cumple ninguna condición
 				imagenAlimentacion = ".\\imagenes\\icono alimentacion.png";

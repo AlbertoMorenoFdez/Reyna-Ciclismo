@@ -96,9 +96,20 @@ public class ElementoListaBici extends JPanel {
 
 				if (marca.equals("KTM") && modelo.equals("Scarp")) {
 					imagenBici = ".\\imagenes\\scarp.jpg";
-				} else if (marca.equals("bh") && modelo.equals("Lynx 6.5")) {
+				} else if (marca.equals("BH") && modelo.equals("Lynx 6.5")) {
 					imagenBici = ".\\imagenes\\lynx6_5.jpg";
-				
+				} else if (marca.equals("FACTOR") && modelo.equals("Ostro Van")) {
+					imagenBici = ".\\imagenes\\ostro.jpg";
+				} else if (marca.equals("RIDLEY") && modelo.equals("Noah Disc")) {
+					imagenBici = ".\\imagenes\\noah.jpg";
+				} else if (marca.equals("FOCUS") && modelo.equals("Jam2")) {
+					imagenBici = ".\\imagenes\\jam2.png";
+				} else if (marca.equals("BH") && modelo.equals("ILynx Trail")) {
+					imagenBici = ".\\imagenes\\ilynx.jpg";
+				} else if (marca.equals("EOVOLT") && modelo.equals("Afternoon")) {
+					imagenBici = ".\\imagenes\\eovolt.jpg";
+				} else if (marca.equals("BROMPTON") && modelo.equals("C Line Explore")) {
+					imagenBici = ".\\imagenes\\brompton.jpg";
 				} else {
 				    // Imagen por defecto si no se cumple ninguna condición
 					imagenBici = ".\\imagenes\\mtb.jpg";
